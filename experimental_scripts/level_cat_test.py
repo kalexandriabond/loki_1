@@ -4,6 +4,7 @@ from pandas import read_csv, DataFrame
 from psychopy.tools.colorspacetools import rgb2dklCart
 import numpy as np
 from random import shuffle
+import pickle
 
 current_time = datetime.datetime.today().strftime("%m%d%Y_%H%M%S")
 user_input_dict = {'CoAx ID [####]': ''}
@@ -12,7 +13,9 @@ sub_inf_dlg = gui.DlgFromDict(user_input_dict, title='Subject information', show
 image_directory = '../images/symm_greebles/'
 exp_param_directory = '../experimental_parameters/'
 analysis_directory = '../analysis/'
-data_directory = '../data/pilot_class/'
+data_directory = '../data/pilot_match/'
+if not os.path.isdir(data_directory):
+    os.makedirs(data_directory)
 
 exp_param_file = exp_param_directory + 'level_matching_parameters.csv'
 
@@ -31,21 +34,20 @@ else:
 output_file_name = "level_matching_subj{}({})".format(subj_id, current_time)
 
 output_path = data_directory + output_file_name + ".json"
-run_info_path = os.getcwd() + '/data/pilot_criterion/' + output_file_name + "_runInfo.json"
+run_info_path = data_directory + output_file_name + "_runInfo.json"
 
 output_path_readable = data_directory + output_file_name + ".csv"
-run_info_path_readable = os.getcwd() + '/data/pilot_criterion/' + output_file_name + "_runInfo.csv"
+run_info_path_readable = data_directory + output_file_name + "_runInfo.csv"
 
 if not testing and os.path.exists(output_path):
     sys.exit(output_file_name + " already exists! Overwrite danger...Exiting.")
-
 
 #specify constants
 exp_param = read_csv(exp_param_file, header=0)
 param = exp_param.values
 
 n_trials = len(param)
-n_test_trials = 4 #needs to be divisible by 2
+n_test_trials = 2
 
 if testing:
     n_trials = n_test_trials
@@ -212,6 +214,9 @@ while t < n_trials:
     fixation_cross.setAutoDraw(True)
     greeble_sample.setAutoDraw(False)
     window.flip()
+    stim_offset_time = expTime_clock.getTime()
+    stim_offset_list.append(stim_offset_time)
+
     core.wait(8)
 
     for i in range(num_matches):
@@ -249,14 +254,13 @@ while t < n_trials:
         elif np.isnan(choice):
             LR_choice_list.append(np.nan)
 
-        core.wait(0.1)
-        stim_offset_time = expTime_clock.getTime()
-        stim_offset_list.append(stim_offset_time)
-
+        # core.wait(0.1)
         fixation_cross.color = neutral_color
         greeble.setAutoDraw(False)
         fixation_cross.setAutoDraw(True)
         window.flip()
+        stim_offset_time = expTime_clock.getTime()
+        stim_offset_list.append(stim_offset_time)
 
         rt_list.append(rt)
 
@@ -292,19 +296,17 @@ pyglet_version, pygame_version, numpy_version, wx_version, window_refresh_time_a
 begin_time, exp_dir, last_sys_reboot, system_platform, internet_access,\
  total_exp_time")
 
-np.savetxt(output_path, data, header=header, delimiter=',',comments='')
+np.savetxt(output_path, data, header=header, delimiter=',',comments='', fmt='%s')
 np.savetxt(run_info_path,runtime_data, header=runtime_header,delimiter=',',comments='',fmt="%s")
-np.savetxt(output_path_readable, data, header=header, delimiter=',',comments='')
+np.savetxt(output_path_readable, data, header=header, delimiter=',',comments='', fmt='%s')
 np.savetxt(run_info_path_readable,runtime_data, header=runtime_header,delimiter=',',comments='',fmt="%s")
 
-end_msg_text = ("Awesome! You are ready to continue to the main task. \nLet the experimenter know that you're finished.")
+end_msg_text = ("Awesome! You have finished the matching task. ")
 
 #dismiss participant
 instruction_phase = True
 while instruction_phase:
-
     end_msg.text = end_msg_text
-
     end_msg.draw()
     window.flip()
     end_keys = event.waitKeys(keyList=[escape_key])

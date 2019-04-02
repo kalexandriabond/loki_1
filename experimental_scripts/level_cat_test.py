@@ -9,10 +9,10 @@ current_time = datetime.datetime.today().strftime("%m%d%Y_%H%M%S")
 user_input_dict = {'CoAx ID [####]': ''}
 sub_inf_dlg = gui.DlgFromDict(user_input_dict, title='Subject information', show=0, order=['CoAx ID [####]'])
 
-image_directory = os.getcwd() + '/images/symm_greebles/'
-exp_param_directory = os.getcwd() + '/experimental_parameters/'
-analysis_directory = os.getcwd() + '/analysis/'
-data_directory = os.getcwd() + '/data/pilot_class/'
+image_directory = '../images/symm_greebles/'
+exp_param_directory = '../experimental_parameters/'
+analysis_directory = '../analysis/'
+data_directory = '../data/pilot_class/'
 
 exp_param_file = exp_param_directory + 'level_matching_parameters.csv'
 
@@ -58,7 +58,7 @@ horiz_txt_break = "\t"*9
 
 instruction1 = ("Now you are going to match greebles at different categories. After the fixation point, you will be "
                 "presented a sample greeble and four more greebles following it. A category will be given at the "
-                "beginning each trial. The categories could be 'family', 'individual', or 'sex'. If the following"
+                "beginning each trial. The categories could be 'family', 'individual', or 'sex'. If the following "
                 "greebles match the category of the first one, press the left (yellow) button; if not, press the right "
                 "(red) button.")
 
@@ -186,7 +186,7 @@ while t < n_trials:
     trialTime_clock.reset()
 
     fixation_cross.setAutoDraw(False)
-    level_msg.text = "Family" # support to be randomized
+    level_msg.text = param[t,1] # support to be randomized
     level_msg.setAutoDraw(True)
     window.flip()
     core.wait(5)
@@ -199,7 +199,7 @@ while t < n_trials:
 
     fixation_cross.setAutoDraw(False)
 
-    greeble_sample.setImage(image_directory+param[t,1])
+    greeble_sample.setImage(image_directory+param[t,-2])
 
     greeble_sample.setAutoDraw(True)
     window.flip()

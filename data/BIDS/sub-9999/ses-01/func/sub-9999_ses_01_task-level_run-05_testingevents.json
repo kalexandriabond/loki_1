@@ -1,0 +1,8 @@
+stim_onset, stim_duration, stim_greebles, trial_num, trial_type, rt, choice
+[10.08096718788147, 20.129152059555054, 30.150410175323486, 40.17207598686218, 50.203482151031494]
+[2.0231008529663086, 0.3918421268463135, 0.5539708137512207, 0.8648781776428223, 1.1169090270996094]
+['/Users/ariaw/Research/TarrLab/PerceptualExpertise/loki1_greebleCat/loki_1/images/symm_greebles/m5~55-v1.tif', '/Users/ariaw/Research/TarrLab/PerceptualExpertise/loki1_greebleCat/loki_1/images/symm_greebles/m3~33-v1.tif', '/Users/ariaw/Research/TarrLab/PerceptualExpertise/loki1_greebleCat/loki_1/images/symm_greebles/m5~56-v1.tif', '/Users/ariaw/Research/TarrLab/PerceptualExpertise/loki1_greebleCat/loki_1/images/symm_greebles/m4~46-v1.tif', '/Users/ariaw/Research/TarrLab/PerceptualExpertise/loki1_greebleCat/loki_1/images/symm_greebles/f4~41-v1.tif']
+[0]
+['Sex']
+[0.37143707275390625, 0.5343060493469238, 0.8421909809112549, 1.0931978225708008]
+[76, 76, 82, 76]

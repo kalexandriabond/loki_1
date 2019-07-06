@@ -8,12 +8,12 @@ import pickle
 
 
 current_time = datetime.datetime.today().strftime("%m%d%Y_%H%M%S")
-user_input_dict = {"CoAx ID [####]": "", "Session Number [#]": ""}
+user_input_dict = {"CoAx ID [####]": "", "Session Number [#]": "", "Run [#]": ""}
 sub_inf_dlg = gui.DlgFromDict(
     user_input_dict,
     title="Subject information",
     show=0,
-    order=["CoAx ID [####]", "Session Number [#]"],
+    order=["CoAx ID [####]", "Session Number [#]", "Run [#]"],
 )
 
 # set data path & collect information from experimenter
@@ -29,10 +29,6 @@ image_directory = parent_directory + "/images/symm_greebles/"
 exp_param_directory = parent_directory + "/experimental_parameters/"
 analysis_directory = parent_directory + "/analysis/"
 run_info_directory = parent_directory + "/data/run_info_data/"
-data_directory = parent_directory + "/data/level_match/"
-
-if not os.path.isdir(data_directory):
-    os.makedirs(data_directory)
 
 exp_param_file = (
     exp_param_directory + "level_matching_parameters.csv"
@@ -47,9 +43,15 @@ else:
     sub_inf_dlg.show()
     subj_id = int(float(user_input_dict["CoAx ID [####]"]))
     session_n = int(float(user_input_dict["Session Number [#]"]))
+    run_n = float(user_input_dict["Run [#]"])
 
+data_directory = parent_directory + "/data/sub-{}/sess-{}".format(subj_id, session_n)
+if not os.path.isdir(data_directory):
+    os.makedirs(data_directory)
 
-output_file_name = "sub{}_sess_{}_level_matching_{}".format(subj_id, session_n, current_time)
+output_file_name = "sub{}_sess_{}_level_matching_run_{}_{}".format(
+    subj_id, session_n, run_n, current_time
+)
 
 output_path = data_directory + output_file_name + "_events.tsv"
 run_info_path = run_info_directory + output_file_name + "_runInfo.csv"
@@ -58,8 +60,11 @@ if not testing and os.path.exists(output_path):
     sys.exit(output_file_name + " already exists! Overwrite danger...Exiting.")
 
 # specify constants
-exp_param = read_csv(exp_param_file, header=0)
+
+df = read_csv(exp_param_file, header=0)
+exp_param = df[df['run'] == run_n]
 param = exp_param.values
+
 
 n_trials = len(param)
 n_test_trials = 1
@@ -313,7 +318,7 @@ while t < n_trials:
 
     fixation_cross.setAutoDraw(False)
 
-    greeble_sample.setImage(image_directory + param[t, -2])
+    greeble_sample.setImage(image_directory + param[t, 2])  #TODO: check this
 
     greeble_sample.setAutoDraw(True)
     window.flip()
@@ -335,7 +340,7 @@ while t < n_trials:
         matchTime_clock.reset()  # reset time
 
         fixation_cross.setAutoDraw(False)
-        greeble.setImage(image_directory + param[t, i + 2])
+        greeble.setImage(image_directory + param[t, i + 3])
         greeble.setAutoDraw(True)
         window.flip()
         stim_onset_time = expTime_clock.getTime()
@@ -406,7 +411,14 @@ events_data = np.transpose(
         )
     )
 )
-np.savetxt(output_path, events_data, header=events_header, fmt='%s', delimiter="\t", comments="")
+np.savetxt(
+    output_path,
+    events_data,
+    header=events_header,
+    fmt="%s",
+    delimiter="\t",
+    comments="",
+)
 
 runtime_data = np.matrix(
     (

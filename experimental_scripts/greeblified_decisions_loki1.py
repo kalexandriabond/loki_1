@@ -25,10 +25,10 @@ current_time = datetime.datetime.today().strftime("%m%d%Y_%H%M%S")
 
 user_input_dict = {
     "CoAx ID [####]": "",
-    "Session [##] (e.g., 01)": "",
+    "Session [##] (01-11)": "",
     "Reward Code [#]": "",
     "Condition [####] (e.g., 6510)": "",
-    "Run [#]": "",
+    "Run [#] (01-05)": "",
 }
 sub_inf_dlg = gui.DlgFromDict(
     user_input_dict,
@@ -36,10 +36,10 @@ sub_inf_dlg = gui.DlgFromDict(
     show=0,
     order=[
         "CoAx ID [####]",
-        "Session [##] (e.g., 01)",
+        "Session [##] (01-11)",
         "Reward Code [#]",
         "Condition [####] (e.g., 6510)",
-        "Run [#]",
+        "Run [#] (01-05)",
     ],
 )
 
@@ -53,7 +53,7 @@ parent_directory = os.path.dirname(os.getcwd())
 
 image_directory = parent_directory + "/images/"
 exp_param_directory = parent_directory + "/experimental_parameters/reward_parameters/"
-data_directory = parent_directory + "/data/"
+data_directory = parent_directory + "/data/BIDS/"
 # edf_directory = parent_directory + "/data/eyetracking_data/reward_pupil_data/"
 run_info_directory = parent_directory + "/data/run_info_data/"
 
@@ -61,19 +61,20 @@ run_info_directory = parent_directory + "/data/run_info_data/"
 
 sub_inf_dlg.show()
 subj_id = int(float(user_input_dict["CoAx ID [####]"]))
-session_n = int(float(user_input_dict["Session [##] (e.g., 01)"]))
+session_n = int(float(user_input_dict["Session [##] (01-11)"]))
 reward_code = int(float(user_input_dict["Reward Code [#]"]))
 condition = int(float(user_input_dict["Condition [####] (e.g., 6510)"]))  # condition is coded as prob-lambda [6510]
-run = int(float(user_input_dict["Run [#]"]))
+run = int(float(user_input_dict["Run [#] (01-05)"]))
 
 
-subj_directory = data_directory + "sub-" + str(subj_id) + "/"
-session_directory = subj_directory + "sess-" + str(session_n) + "/"
+subj_directory = data_directory + "sub-" + "{:04d}".format(subj_id) + "/"
+session_directory = subj_directory + "ses-" + "{:02d}".format(session_n) + "/"
 
 behavioral_directory = session_directory + "beh/"
+func_directory = session_directory + "func/"
 edf_directory = session_directory + "pupil/"
 
-directories = list([behavioral_directory, edf_directory])
+directories = list([behavioral_directory, edf_directory, func_directory])
 
 for dir in directories:
     if not os.path.exists(dir):
@@ -99,16 +100,16 @@ if not os.path.exists(exp_param_file):
 
 output_file_name = (
     "sub-"
-    + str(subj_id)
+    + "{:04d}".format(subj_id)
     + "_"
     + "sess"
-    + str(session_n)
+    + "{:02d}".format(session_n)
     + "_"
     + "bold-task-"
     + "lokicat"
     + "_"
     + "run"
-    + str(run)
+    + "{:02d}".format(run)
     + "_"
     + str(current_time)
 )
@@ -116,11 +117,36 @@ output_file_name = (
 if testing:
     output_file_name = output_file_name + '_test'
 
+# error checking for user input
+
+n_sessions = 11
+n_runs = 5
+
+print(str(subj_id), str(run), str(session_n))
+
+try:
+
+    assert len(str(subj_id)) == 3
+
+    assert len(str(run)) == 1
+    assert run > 0 & run < (n_runs + 1)
+
+    assert len(str(session_n)) <= 2
+    assert session_n > 0 & session_n < (n_sessions + 1)
+
+
+except AssertionError:
+    sys.exit(
+        "Format failure. Subject ID should be 4 digits, session number should be 1:11,\
+         and run number should be 1:5."
+    )
+
+
 output_path_beh = behavioral_directory + output_file_name + ".json"
 output_path_readable_beh = behavioral_directory + output_file_name + ".tsv"
 
 run_info_path = run_info_directory + output_file_name + "_runInfo.csv"
-output_path_events = behavioral_directory + output_file_name + "_events.tsv"
+output_path_events = func_directory + output_file_name + "_events.tsv"
 
 
 if not testing and os.path.exists(output_path_readable_beh):
@@ -208,7 +234,7 @@ instructions_p3 = (
     "The total amount of money that you have is shown as a bank at the center of the screen:"
     + small_vertical_txt_break * 7
     + "If you earn money, the bank will turn green. "
-    + "If you lose money, the bank will turn yellow.\n\nIf you choose too slowly or too quickly, you will lose 5 points and the bank at the center of the screen will turn red.\n Each point you earn will correspond to one real cent that you will be paid in addition to your hourly pay. So do the best you can!"
+    + "If you lose money, the bank will turn yellow.\n\nIf you choose too slowly or too quickly, you will lose 5 points and the bank at the center of the screen will turn red.\n\nEach point you earn will correspond to one real cent that you will be paid in addition to your hourly pay. So do the best you can!"
 )
 
 
@@ -328,16 +354,6 @@ speed_msg = visual.TextStim(
     color=[1, -1, -1],
     bold=True,
 )
-
-
-bank_sample = visual.ImageStim(
-    window,
-    image=image_directory + "bank_sample.png",
-    units="pix",
-    size=(window_size[0]/4, window_size[1]/2),
-    colorSpace="rgb",
-)
-
 
 # m/f from different families to emphasize dimension of interest (sex)
 female_greeble_sample = visual.ImageStim(
@@ -564,8 +580,13 @@ while instruction_phase:
         sys.exit("escape key pressed.")
 
     inst_msg.text = instructions_p3
-    bank_sample.setPos([-80, 70])
-    bank_sample.draw()
+    female_greeble_sample.setPos([-200, 75])
+    male_greeble_sample.setPos([200, 75])
+    female_greeble_sample.draw()
+    male_greeble_sample.draw()
+    fixation_point_reward_total.text = str(total_reward)
+    fixation_point_reward_total.setPos([0, 75])
+    fixation_point_reward_total.draw()
     window.flip()
     inst_keys_p3 = event.waitKeys(keyList=[inst_key, escape_key])
     if escape_key in inst_keys_p3:
@@ -608,6 +629,8 @@ t = 0
 expTime_clock.reset()  # reset so that inst. time is not included
 trialTime_clock.reset()
 fixation_point_reward_total.text = str(total_reward)
+fixation_point_reward_total.setPos([0, 15])
+
 
 # n_runs = 5
 # n_trials_per_run = n_trials // n_runs

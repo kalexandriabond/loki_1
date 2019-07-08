@@ -16,6 +16,11 @@ which requires a button press response from the subject.
 
 Each stimuli presentation is a 10s slow event.
 
+Total number of stimuli per run = 5 stimuli x 8 blocks = 40.
+
+Each run takes about 8 mins (481 s). A sample run output file can be found at
+/data/BIDS/sub-9999/ses-01/func/sub-9999_ses_01_task-level_run-01_events.tsv
+
 To run the experiment, do `python level_cat_test.py`.
 If not Testing, enter '0'. Then enter the subject ID, session number and run number(1-6).
 If the experiment is discontinued for some reason, you can start from any run.

@@ -1,4 +1,6 @@
-TODO before we start data collection
+**TODO before we start data collection**
+
+@ariaaay @kmbond
 
 1) verify that training and test sets of greebles are separated and consistent across our experiments (again, to be sure)
 2) run through each of our tasks to make sure nothing conflicts with the other (?)
@@ -11,15 +13,17 @@ TODO before we start data collection
 9) develop a procedure for the overall experiment (when to do the criterion tasks, when to do the perceptual tasks, etc.)
 _ _ _
 
-figure out session order for each person for RL task (latin square? some randomization proc.)
-find best angle for LC using probabilistic LC atlas (right now doing AC/PC, more oblique?)
-confirm run length for behavioral task < scan run
-test Eyelink data collection at new position
-confirm 1:1 mapping between position of button press and visual selection (add box to selection and confirm left button press corresponds to left visual selection)
-ask John to trim the head case for subject 1 (and check for subject 2)
-decide if it's even worth recruiting subject 2? 4 weeks left
-analyze my own pilot data (neuroimaging + behavior)
+@kmbond
 
-John: Also, I can’t quite remember from looking at your program today, but after the last screen of instructions you should time out to a fixation cross that the subject can look at before the scan starts. You don’t want instructions still displayed and the fixation to be cued by the MRI trigger because that increases the chance the subject will be moving their eyes during the reference scans collected before the first trigger is sent. During the reference scan is the most important time when the subject should remain still and not move their eyes so they should have a fixation during that period. 
++ figure out session order for each person for RL task (latin square? some randomization proc.)
++ find best angle for LC using probabilistic LC atlas (right now doing AC/PC, more oblique?)
++ confirm run length for behavioral task < scan run
++ test Eyelink data collection at new position
++ confirm 1:1 mapping between position of button press and visual selection (add box to selection and confirm left button press corresponds to left visual selection)
++ ask John to trim the head case for subject 1 (and check for subject 2)
++ decide if it's even worth recruiting subject 2? 4 weeks left
++ analyze my own pilot data (neuroimaging + behavior)
 
-Issue for my exp. too? Problem is that the fixation point is the point total. 
++ John: Also, I can’t quite remember from looking at your program today, but after the last screen of instructions you should time out to a fixation cross that the subject can look at before the scan starts. You don’t want instructions still displayed and the fixation to be cued by the MRI trigger because that increases the chance the subject will be moving their eyes during the reference scans collected before the first trigger is sent. During the reference scan is the most important time when the subject should remain still and not move their eyes so they should have a fixation during that period. 
+
+  + Issue for my exp. too? Problem is that the fixation point is the point total. 

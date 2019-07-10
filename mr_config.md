@@ -24,10 +24,10 @@ If off - push power
 
 **Eyetracking**
 
-1) Ask scott to replace the normal mirror with the eyetracking mirror
+1) Ask Scott to replace the normal mirror with the eyetracking mirror
 2) Turn on eyelink power behind the tesla remote3 unit
 3) Switch to network switch c
-4) Turn the eye tracking host computer on manually (on computer itself)
+4) Turn the eyetracking host computer on manually (on computer itself)
 5) Turn eyetracking monitor on (select eyelink)
 
 **Respiration & pulse oximetry** 

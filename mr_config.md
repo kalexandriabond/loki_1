@@ -9,7 +9,7 @@ If off - push power
 6) Turn off AVI and turn back on once rest of setup is complete if it flickers.
 7) Make sure that the displays are run at 120 Hz (both).
 
-**Response collection**
+**Behavioral response collection**
 
 1) Ask Scott to plug the Current Designs yellow/blue button cylinders into the fiber optic cable
 2) Turn on Current Designs power switch near outlet

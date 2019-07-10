@@ -2,10 +2,10 @@
 
 1) Make sure BOLD AVI is on. (hold button down for 3 s to turn off and then press again to turn on if you need to power cycle)
 If off - push power
-2) Switch cable with “Laptop” to “CoAx Lab Mac”
+2) Unplug cable labeled “Laptop” and replace with cable labeled “CoAx Lab Mac”
 3) Select “Laptop” button on BOLD AV
 4) Turn the Mac mini on
-5) select 5 for the kvm system. May need to wait for the BOLD screen to warm up. If the BOLD screen is flashing, power cycle. 
+5) Select 5 for the kvm system. May need to wait for the BOLD screen to warm up. If the BOLD screen is flashing, power cycle. 
 6) Turn off AVI and turn back on once rest of setup is complete if it flickers.
 7) Make sure that the displays are run at 120 Hz (both).
 

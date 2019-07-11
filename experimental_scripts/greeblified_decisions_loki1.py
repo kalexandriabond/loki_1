@@ -303,7 +303,7 @@ inst_color = [1, 1, 1]
 speed_message_color = dkl_red
 
 window = visual.Window(
-    size=window_size,
+    size=screen_size,
     units="pix",
     monitor=mon,
     color=dkl_blue,
@@ -313,7 +313,7 @@ window = visual.Window(
     allowGUI=False,
     fullscr=False,
     pos=center,
-    screen=0,
+    screen=1,
 )
 
 break_msg = visual.TextStim(
@@ -331,7 +331,7 @@ inst_msg = visual.TextStim(
     colorSpace="dkl",
     color=[90, 0, 1],
     wrapWidth=window_size[0] - 400,
-    height=window_size[1] / 32,
+    height=window_size[1] / 28,
 )
 end_msg = visual.TextStim(
     win=window,
@@ -524,8 +524,8 @@ cp_with_slow_fast = []
 obs_cp_with_slow_fast = []
 cp_list = exp_param.cp.values[:n_trials].tolist()
 obs_cp_list = exp_param.obs_cp.values[:n_trials].tolist()
-# iti_list = exp_param.iti.values[:n_trials].tolist()
-iti_list = [0] * len(obs_cp_list)
+iti_list = exp_param.iti.values[:n_trials].tolist()
+# iti_list = [0] * len(obs_cp_list)
 
 high_p_cue_list = exp_param.p_id_solution[0:n_trials].tolist()
 f_images = exp_param.f_image[:n_trials].tolist()
@@ -619,6 +619,9 @@ inst_msg.setAutoDraw(True)
 window.flip()
 print("Waiting for trigger...")
 trigger_output = event.waitKeys(keyList=[trigger], clearEvents=True)
+
+start_time = expTime_clock.getTime() # experiment starts now
+
 inst_msg.setAutoDraw(False)
 window.flip()
 
@@ -632,12 +635,6 @@ fixation_point_reward_total.text = str(total_reward)
 fixation_point_reward_total.setPos([0, 15])
 
 
-# n_runs = 5
-# n_trials_per_run = n_trials // n_runs
-# run_intervals = np.arange(0, n_trials, n_trials_per_run)
-
-
-start_time = expTime_clock.getTime()
 
 
 # present choices
@@ -828,7 +825,7 @@ while t < n_trials:
     t += 1
 
 fixation_point_reward_total.setAutoDraw(False)
-total_exp_time = expTime_clock.getTime()
+total_exp_time = expTime_clock.getTime() - start_time
 stimulus_duration_list = list(map(operator.sub, stim_offset_list, stim_onset_list))
 
 

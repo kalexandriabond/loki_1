@@ -7,7 +7,7 @@
 3) make sure that there are the same visuals (window size, greeble size, luminance/contrast issues)
 4) <s>collate current subject list (IDs)</s> 
 5) recruit remainder of subjects (3)
-6) method for coordinating the scheduling of sessions
+6) method for coordinating the scheduling of sessions {shared google calendar}
 7) test physio. data collection
 8) settle on a numbering convention for sessions (perceptual session is 1? my RL sessions being 2-10, last perc. session is 11?)
 9) develop a procedure for the overall experiment (when to do the criterion tasks, when to do the perceptual tasks, etc.)

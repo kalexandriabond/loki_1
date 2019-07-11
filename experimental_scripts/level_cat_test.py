@@ -304,7 +304,7 @@ while run_n < 7:
         fixation_cross.setAutoDraw(True)
         window.flip()
         # core.wait(5)
-        trigger = "t"
+        trigger = "5"
         # trigger_wait_instructions = "Waiting for trigger from the scanner..."
 
         # test the trigger
@@ -521,6 +521,8 @@ while run_n < 7:
     inst_msg.setAutoDraw(True)
     window.flip()
     between_run_key = event.waitKeys(keyList=[inst_key, escape_key])
+    print("print between run key:")
+    print(between_run_key)
     if escape_key in between_run_key:
         sys.exit("escape key pressed.")
     inst_msg.setAutoDraw(False)

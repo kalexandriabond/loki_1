@@ -77,11 +77,15 @@ instruction1 = (
     + "Press the green button when you are ready to begin!"
 )
 
-instruction2 = "Between trials, focus on the fixation cross."
+instruction2 = "Between trials, focus on the fixation cross. Press the green button to continue."
 
-between_run_inst = "Feel free to take a break! \n Press the green button when you're ready to continue."
+between_run_inst = (
+    "Feel free to take a break!"
+    + small_vertical_txt_break
+    + "Press the green button when you're ready to continue."
+)
 
-end_msg = "Awesome! You have finished the matching task. "
+end_msg = "Awesome! You have finished the greeble matching task. "
 
 
 # instantiate psychopy object instances
@@ -218,34 +222,13 @@ fixation_cross = visual.TextStim(
     height=screen_size[0] / 15,
 )
 
-# give instructions
-instruction_phase = True
-while instruction_phase:
-    inst_msg.text = instruction1
-    inst_msg.setAutoDraw(True)
-    window.flip()
-    inst_keys_1 = event.waitKeys(keyList=[inst_key, escape_key])
-    if escape_key in inst_keys_1:
-        sys.exit("escape key pressed.")
-
-    inst_msg.text = instruction2
-    inst_msg.setAutoDraw(True)
-    window.flip()
-    inst_keys_2 = event.waitKeys(keyList=[inst_key, escape_key])
-    if escape_key in inst_keys_2:
-        sys.exit("escape key pressed.")
-
-    instruction_phase = False
-
-inst_msg.setAutoDraw(False)
-window.flip()
 
 # experiment specific variables
 num_matches = 4
 df = read_csv(exp_param_file, header=0)
 
 # experiment will start with run_n and ended with the last run
-while run_n < 7:  # TODO
+while run_n < 7:
 
     # initalize lists
     id_choice_accuracy_list = []
@@ -253,6 +236,8 @@ while run_n < 7:  # TODO
 
     # timing lists
     stim_list = []
+    level_onset_list = []
+    level_offset_list = []
     stim_onset_list = []
     stim_offset_list = []
     trial_onset_list = []
@@ -294,6 +279,35 @@ while run_n < 7:  # TODO
 
     trial_list = list(np.arange(0, n_trials))
 
+    # give instructions
+    instruction_phase = True
+    while instruction_phase:
+        inst_msg.text = instruction1
+        inst_msg.setAutoDraw(True)
+        window.flip()
+        inst_keys_1 = event.waitKeys(keyList=[inst_key, escape_key])
+        if escape_key in inst_keys_1:
+            sys.exit("escape key pressed.")
+
+        inst_msg.text = instruction2
+        inst_msg.setAutoDraw(True)
+        window.flip()
+        inst_keys_2 = event.waitKeys(keyList=[inst_key, escape_key])
+        if escape_key in inst_keys_2:
+            sys.exit("escape key pressed.")
+
+        inst_msg.setAutoDraw(False)
+        window.flip()
+
+        fixation_cross.setAutoDraw(True)
+        window.flip()
+        core.wait(5)
+        fixation_cross.setAutoDraw(False)
+
+        instruction_phase = False
+
+    window.flip()
+
     # need to timestamp every event.
     expTime_clock.reset()  # reset so that inst. time is not included
     trialTime_clock.reset()
@@ -315,12 +329,20 @@ while run_n < 7:  # TODO
 
         level_msg.setAutoDraw(True)
         window.flip()
+
+        level_onset_time = expTime_clock.getTime()
+        level_onset_list.append(level_onset_time)
+
         core.wait(5)
 
         level_msg.setAutoDraw(False)
         fixation_cross.setAutoDraw(True)
 
         window.flip()
+
+        level_offset_time = expTime_clock.getTime()
+        level_offset_list.append(level_offset_time)
+
         core.wait(5)
 
         fixation_cross.setAutoDraw(False)
@@ -406,9 +428,15 @@ while run_n < 7:  # TODO
     fixation_cross.setAutoDraw(False)
     total_exp_time = expTime_clock.getTime()
     stimulus_duration_list = list(map(operator.sub, stim_offset_list, stim_onset_list))
+    level_label_duration_list = list(
+        map(operator.sub, level_onset_list, level_offset_list)
+    )
 
     # save tsv events data
-    events_header = "stim_onset, stim_duration, stim_greebles, trial_num, trial_type, rt, choice"
+    events_header = (
+        "stim_onset, stim_duration, stim_greebles, trial_num, trial_type, level_onset , "
+        "level_label_duration, rt, choice"
+    )
     events_data = np.transpose(
         np.matrix(
             (
@@ -417,6 +445,8 @@ while run_n < 7:  # TODO
                 stim_list,
                 trial_list,
                 level_list,
+                level_onset_list,
+                level_label_duration_list,
                 rt_list,
                 LR_choice_list,
             )

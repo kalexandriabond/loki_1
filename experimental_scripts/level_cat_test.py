@@ -303,18 +303,30 @@ while run_n < 7:
 
         fixation_cross.setAutoDraw(True)
         window.flip()
-        core.wait(5)
+        # core.wait(5)
+        trigger = "t"
+        # trigger_wait_instructions = "Waiting for trigger from the scanner..."
+
+        # test the trigger
+        # inst_msg.text = trigger_wait_instructions
+        # inst_msg.setAutoDraw(True)
+        # window.flip()
+        print("Waiting for trigger...")
+        trigger_output = event.waitKeys(keyList=[trigger], clearEvents=True)
+        start_time = expTime_clock.getTime()
         fixation_cross.setAutoDraw(False)
 
         instruction_phase = False
 
     window.flip()
 
+
+
+    # inst_msg.setAutoDraw(False)
+    # window.flip()
     # need to timestamp every event.
     expTime_clock.reset()  # reset so that inst. time is not included
     trialTime_clock.reset()
-
-    start_time = expTime_clock.getTime()
 
     t = 0
     # present choices

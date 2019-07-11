@@ -72,17 +72,17 @@ instruction1 = (
     "four more greebles following it. "
     + small_vertical_txt_break
     + "If the following greebles match the category of the first one, press the left "
-    "(yellow) button with your left thumb; if not, press the right (red) button with your right thumb. "
+    "hand button; if not, press the right hand button. "
     + small_vertical_txt_break
-    + "Press the green button when you are ready to begin!"
+    + "Press the left hand button when you are ready to begin!"
 )
 
-instruction2 = "Between trials, focus on the fixation cross. Press the green button to continue."
+instruction2 = "Between trials, focus on the fixation cross. Press the left hand button to continue."
 
 between_run_inst = (
     "Feel free to take a break!"
     + small_vertical_txt_break
-    + "Press the green button when you're ready to continue."
+    + "Press the left hand button when you're ready to continue."
 )
 
 end_msg = "Awesome! You have finished the greeble matching task. "
@@ -95,8 +95,9 @@ matchTime_clock = core.Clock()
 rt_clock = core.Clock()
 
 
-screen_size = [1280, 1024]
-mon = monitors.Monitor("ET_display_computer", width=36.0, distance=64.0)
+screen_size = (1920., 1080.)  # screen size in pixels
+window_size = (1280., 800.)
+mon = monitors.Monitor("BOLD_display", width=79.7, distance=138)
 mon.setSizePix(screen_size)
 mon.saveMon()
 
@@ -138,9 +139,9 @@ window = visual.Window(
     blendMode="avg",
     useFBO=True,
     allowGUI=False,
-    fullscr=True,
+    fullscr=False,
     pos=center,
-    screen=0,
+    screen=1,
 )
 
 inst_msg = visual.TextStim(
@@ -175,9 +176,10 @@ level_msg = visual.TextStim(
 
 mandatory_trial_time = 10
 
-inst_key = "s"
-left_key = "a"
-right_key = "f"
+
+left_key = "2"
+right_key = "1"
+inst_key = left_key
 
 escape_key = "escape"
 

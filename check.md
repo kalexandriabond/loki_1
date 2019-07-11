@@ -4,7 +4,7 @@
 
 1) verify that training and test sets of greebles are separated and consistent across our experiments (again, to be sure)
 2) run through each of our tasks to make sure nothing conflicts with the other (?)
-3) make sure that there are the same visuals (window size, greeble size, luminance/contrast issues)
+3) make sure that there are the same visuals (window size, greeble size, luminance/contrast issues). {create a dict for the luminance and contrast values as a separate config file} 
 4) <s>collate current subject list (IDs)</s> 
 5) recruit remainder of subjects (3)
 6) method for coordinating the scheduling of sessions {shared google calendar}

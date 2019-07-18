@@ -4,8 +4,7 @@
 1) Eyetracking eligibility
 2) fMRI eligibility
 3) RL task eligibility (can't have previously participated)
-
-check if subject has ID and if not, assign from lab database (https://docs.google.com/document/d/175AGq7DkTPlNZQH-G749gmlrRx9CNp6dACaumjPw_iw/edit)
+4) check if subject has ID and if not, assign from lab [database](https://docs.google.com/document/d/175AGq7DkTPlNZQH-G749gmlrRx9CNp6dACaumjPw_iw/edit)
 
 **Criterion tasks**
 
@@ -15,7 +14,7 @@ check if subject has ID and if not, assign from lab database (https://docs.googl
 
 **Enter experiment**
 
-x) something here to test whether they understand the hierarchy? (@ariaaay)
-4) Perceptual learning session (baseline)
-5) Reinforcement learning session (x9)
-6) Perceptual learning session (informed)
+4) Something here to test whether they understand the hierarchy? (@ariaaay)
+5) Perceptual learning session (baseline)
+6) Reinforcement learning session (x9)
+7) Perceptual learning session (informed)

@@ -14,7 +14,7 @@
 
 **Enter experiment**
 
-4) Something here to test whether they understand the hierarchy? (@ariaaay)
-5) Perceptual learning session (baseline)
-6) Reinforcement learning session (x9)
-7) Perceptual learning session (informed)
+1) Something here to test whether they understand the hierarchy? (@ariaaay)
+2) Perceptual learning session (baseline)
+3) Reinforcement learning session (x9)
+4) Perceptual learning session (informed)

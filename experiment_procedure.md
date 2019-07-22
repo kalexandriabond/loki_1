@@ -17,6 +17,7 @@
 
 1) Something here to test whether they understand the hierarchy? (@ariaaay)
 2) Perceptual learning session (baseline)
-3a) Luminance range test (test range of pupillary response) 
-3b) Reinforcement learning session (x9)
+3) 
+    - Luminance range test (test range of pupillary response) 
+    - Reinforcement learning session (x9)
 4) Perceptual learning session (informed)

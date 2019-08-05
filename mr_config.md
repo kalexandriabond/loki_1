@@ -35,6 +35,8 @@ If off - push power
 
 Ask Scott to configure respiration and pulse oximetry hardware. 
 
+Replace physio equipment on charger. Make sure it charges.
+
 Ask the participant to apply the EKG electrodes themselves. Instruct them using the images in the manual: 
 
 ![EKG Image](https://github.com/kmbond/loki_1/blob/master/images/ekg_pos.png)

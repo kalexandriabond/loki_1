@@ -25,3 +25,5 @@
 
 
 Note: can cut field map for RL sessions if we are running over the time alloted. Saves 2 m.
+
+Analysis note: can use left/right motor thalamus (convergence of direct and indirect) from Aria's task as an independent measure.

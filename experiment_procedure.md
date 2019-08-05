@@ -22,3 +22,6 @@
     - Luminance range test (test range of pupillary response) 
     - Reinforcement learning session (x9)
 4) Perceptual learning session (informed)
+
+
+Note: can cut field map for RL sessions if we are running over the time alloted. Saves 2 m.

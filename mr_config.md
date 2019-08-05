@@ -8,6 +8,7 @@ If off - push power
 5) Select 5 for the kvm system. May need to wait for the BOLD screen to warm up. If the BOLD screen is flashing, power cycle. 
 6) Turn off AVI and turn back on once rest of setup is complete if it flickers.
 7) Make sure that the displays are run at 120 Hz (both).
+8) Turn dropbox syncing off.
 
 **Behavioral response collection**
 

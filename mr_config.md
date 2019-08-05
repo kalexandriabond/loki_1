@@ -32,10 +32,17 @@ If off - push power
 
 **Respiration & pulse oximetry** 
 
-Ask Scott to configure respiration and pulse oximetry hardware.
+Ask Scott to configure respiration and pulse oximetry hardware. 
+
+Ask the participant to apply the EKG electrodes themselves. Instruct them using the images in the manual: 
+
+![EKG Image](https://github.com/kmbond/loki_1/blob/master/images/ekg_pos.png)
+ 
+See p. 91 of the Magnetom operator manual for the placement of the EKG electrodes.  
+
+If not scanning with Scott, verify that the ear plugs are fully in. 
 
 Will need to order EKG and respiration equipment. 
-
 ___
 
 At the end of the session, ask Scott if everything needs to be shut down.

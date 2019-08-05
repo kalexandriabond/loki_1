@@ -139,7 +139,7 @@ window = visual.Window(
     blendMode="avg",
     useFBO=True,
     allowGUI=False,
-    fullscr=False,
+    fullscr=True,
     pos=center,
     screen=1,
 )
@@ -443,7 +443,7 @@ while run_n < 7:
     total_exp_time = expTime_clock.getTime()
     stimulus_duration_list = list(map(operator.sub, stim_offset_list, stim_onset_list))
     level_label_duration_list = list(
-        map(operator.sub, level_onset_list, level_offset_list)
+        map(operator.sub, level_offset_list, level_onset_list)
     )
 
     # save tsv events data

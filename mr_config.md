@@ -34,6 +34,8 @@ If off - push power
 
 Ask Scott to configure respiration and pulse oximetry hardware.
 
+Will need to order EKG and respiration equipment. 
+
 ___
 
 At the end of the session, ask Scott if everything needs to be shut down.

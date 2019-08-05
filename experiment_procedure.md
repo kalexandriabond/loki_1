@@ -17,7 +17,8 @@
 
 1) Something here to test whether they understand the hierarchy? (@ariaaay)
 2) Perceptual learning session (baseline)
-3) 
+3)  - Sex disc. criterion 
+    - RL criterion? 
     - Luminance range test (test range of pupillary response) 
     - Reinforcement learning session (x9)
 4) Perceptual learning session (informed)

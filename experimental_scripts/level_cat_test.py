@@ -95,8 +95,8 @@ matchTime_clock = core.Clock()
 rt_clock = core.Clock()
 
 
-screen_size = (1920., 1080.)  # screen size in pixels
-window_size = (1280., 800.)
+screen_size = (1920.0, 1080.0)  # screen size in pixels
+window_size = (1280.0, 800.0)
 mon = monitors.Monitor("BOLD_display", width=79.7, distance=138)
 mon.setSizePix(screen_size)
 mon.saveMon()
@@ -139,7 +139,7 @@ window = visual.Window(
     blendMode="avg",
     useFBO=True,
     allowGUI=False,
-    fullscr=True,
+    fullscr=False,
     pos=center,
     screen=1,
 )
@@ -242,21 +242,23 @@ while run_n < 7:
     level_offset_list = []
     stim_onset_list = []
     stim_offset_list = []
+    stimulus_duration_list = []
     trial_onset_list = []
     abs_response_time_list = []
     trial_time = []
     level_list = []
+    level_label_duration_list = []
 
     # initialize dependent variables
     rt_list = []
     LR_choice_list = []
 
     if testing:
-        output_file_name = "sub-{}_ses_{}_task-level_run-0{}_testing".format(
+        output_file_name = "sub-{}_ses-{}_task-level_run-0{}_testing".format(
             subj_id, session_n, run_n
         )
     else:
-        output_file_name = "sub-{}_ses_{}_task-level_run-0{}".format(
+        output_file_name = "sub-{}_ses-{}_task-level_run-0{}".format(
             subj_id, session_n, run_n
         )
 
@@ -320,13 +322,16 @@ while run_n < 7:
 
     window.flip()
 
-
-
     # inst_msg.setAutoDraw(False)
     # window.flip()
     # need to timestamp every event.
     expTime_clock.reset()  # reset so that inst. time is not included
     trialTime_clock.reset()
+
+    events_header = (
+        "stim_onset, stim_duration, stim_greebles, trial_num, trial_type, level_onset, "
+        "level_label_duration, rt, choice"
+    )
 
     t = 0
     # present choices
@@ -356,12 +361,13 @@ while run_n < 7:
 
         level_offset_time = expTime_clock.getTime()
         level_offset_list.append(level_offset_time)
+        level_label_duration_list.append(level_offset_time - level_onset_time)
 
         core.wait(5)
 
         fixation_cross.setAutoDraw(False)
 
-        greeble_sample.setImage(image_directory + param[t, 2])  # TODO: check this
+        greeble_sample.setImage(image_directory + param[t, 2])
         stim_list.append(image_directory + param[t, 2])
 
         greeble_sample.setAutoDraw(True)
@@ -377,6 +383,7 @@ while run_n < 7:
         window.flip()
         stim_offset_time = expTime_clock.getTime()
         stim_offset_list.append(stim_offset_time)
+        stimulus_duration_list.append(stim_offset_time - stim_onset_time)
 
         core.wait(8)
 
@@ -417,6 +424,8 @@ while run_n < 7:
             elif np.isnan(choice):
                 LR_choice_list.append(np.nan)
 
+            print("Button Press: " + choice)
+
             # core.wait(0.1)
             fixation_cross.color = neutral_color
             greeble.setAutoDraw(False)
@@ -424,6 +433,7 @@ while run_n < 7:
             window.flip()
             stim_offset_time = expTime_clock.getTime()
             stim_offset_list.append(stim_offset_time)
+            stimulus_duration_list.append(stim_offset_time - stim_onset_time)
 
             rt_list.append(rt)
 
@@ -437,43 +447,41 @@ while run_n < 7:
         trial_time.append(
             trialTime_clock.getTime()
         )  # trial time will always be set to 10+10*num_matches
+
+        # save tsv events data
+        events_data = np.transpose(
+            np.matrix(
+                (
+                    stim_onset_list,
+                    stimulus_duration_list,
+                    stim_list,
+                    trial_list,
+                    level_list,
+                    level_onset_list,
+                    level_label_duration_list,
+                    rt_list,
+                    LR_choice_list,
+                )
+            )
+        )
+
+        np.savetxt(
+            output_path,
+            events_data,
+            header=events_header,
+            fmt="%s",
+            delimiter="\t",
+            comments="",
+        )
+
         t += 1
 
     fixation_cross.setAutoDraw(False)
     total_exp_time = expTime_clock.getTime()
-    stimulus_duration_list = list(map(operator.sub, stim_offset_list, stim_onset_list))
-    level_label_duration_list = list(
-        map(operator.sub, level_offset_list, level_onset_list)
-    )
-
-    # save tsv events data
-    events_header = (
-        "stim_onset, stim_duration, stim_greebles, trial_num, trial_type, level_onset , "
-        "level_label_duration, rt, choice"
-    )
-    events_data = np.transpose(
-        np.matrix(
-            (
-                stim_onset_list,
-                stimulus_duration_list,
-                stim_list,
-                trial_list,
-                level_list,
-                level_onset_list,
-                level_label_duration_list,
-                rt_list,
-                LR_choice_list,
-            )
-        )
-    )
-    np.savetxt(
-        output_path,
-        events_data,
-        header=events_header,
-        fmt="%s",
-        delimiter="\t",
-        comments="",
-    )
+    # stimulus_duration_list = list(map(operator.sub, stim_offset_list, stim_onset_list))
+    # level_label_duration_list = list(
+    #     map(operator.sub, level_offset_list, level_onset_list)
+    # )
 
     np.savetxt(
         output_path_json,
@@ -528,7 +536,7 @@ while run_n < 7:
     inst_msg.setAutoDraw(False)
     window.flip()
 
-    run_n += 1  # TODO: check run proceeds
+    run_n += 1
 
 
 # dismiss participant

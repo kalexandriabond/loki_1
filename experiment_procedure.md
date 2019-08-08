@@ -1,8 +1,7 @@
 
 **Eligibility screening**
 
-1) [Eyetracking eligibility](https://drive.google.com/open?id=1dV9waLClJe1rtQVRWfGMnxyWTnjgDnvZ_ZooSYVT-nI)
-2) fMRI eligibility (in person or use qualtrics form from John)
+1) [Eyetracking and fMRI eligibility form](http://cmu.ca1.qualtrics.com/jfe/form/SV_ewFvGG2S63s8vE9)
 3) RL task eligibility (can't have previously participated)
 4) check if subject has ID and if not, assign from lab [database](https://docs.google.com/document/d/175AGq7DkTPlNZQH-G749gmlrRx9CNp6dACaumjPw_iw/edit)
 

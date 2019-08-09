@@ -24,7 +24,7 @@ parent_directory = os.path.dirname(os.getcwd())
 image_directory = parent_directory + '/images/symm_greebles/'
 exp_param_directory = parent_directory + '/experimental_parameters/criterion_parameters/perceptual_disc_criterion_parameters/'
 analysis_directory = parent_directory + '/analysis/'
-data_directory = parent_directory + '/data/criterion_data/'
+data_directory = parent_directory + '/data/BIDS/'
 
 if testing:
     subj_id = 0
@@ -76,21 +76,21 @@ horiz_txt_break = "\t"*5
 instructions_p1 = ("You are going on a treasure hunt! You will start with a certain number of coins, and you will be able to pay a coin " +
 "to ask one of two greebles if they have money. On each trial you will meet two greebles: one is female, one is male." + small_vertical_txt_break + "This is a female." + horiz_txt_break +
 "This is a male." + vertical_txt_break +
-"Note how their features differ. The female greeble has a downward facing appendage, whereas the male greeble has an upward facing appendage.\n\nPress the green button when you're ready to continue to the next instruction screen.  ")
+"Note how their features differ. The female greeble has a downward facing appendage, whereas the male greeble has an upward facing appendage.\n\nPress the left button when you're ready to continue to the next instruction screen.  ")
 
 instructions_p2 = ("So that you can earn the most money, we will start with a test of whether you can accurately identify the sex of each greeble. \n\nSpecifically, you will be asked to choose the greeble that you think is FEMALE. \n\n"
 +"A fixation cross will be shown at the center of the screen. If you correctly choose the female greeble, the cross will turn green. " +
 "If you incorrectly choose the male greeble, the cross will turn yellow. If you choose too slowly or too quickly, the cross will turn red and you will have to wait five seconds before you can proceed.\n\n" +
-"To identify the left greeble as female, press the left (yellow) button with your left thumb. " +
-"To identify the right greeble as female, press the right (red) button with your right thumb.\n\nPress the green button when you are ready to begin!")
+"To identify the left greeble as female, press the left button with your left thumb. " +
+"To identify the right greeble as female, press the right button with your right thumb.\n\nPress the left button when you are ready to begin!")
 
-instructions_p3 = ("Do your best to focus on the fixation cross. Press the green button to start the task.")
+instructions_p3 = ("Do your best to focus on the fixation cross. Press the left button to start the task.")
 
 
 slow_trial = ("Too slow! \nChoose quickly.")
 fast_trial = ("Too fast! \nSlow down.")
 
-between_run_inst = ("Feel free to take a break! \nPress the green button when you're ready to continue.")
+between_run_inst = ("Feel free to take a break! \nPress the left button when you're ready to continue.")
 
 
 
@@ -107,18 +107,16 @@ expTime_clock = core.Clock()
 trialTime_clock = core.Clock()
 rt_clock = core.Clock()
 
-
-screen_size = [1280, 1024]
-mon = monitors.Monitor('ET_display_computer', width=36., distance=64.)
+screen_size = (1920., 1080.)  # screen size in pixels
+window_size = (1280., 800.)
+mon = monitors.Monitor(
+    "BOLD_display", width=79.7, distance=138,
+)  # width and distance in cm
 mon.setSizePix(screen_size)
 mon.saveMon()
 
+center = (0,0)
 
-center=[0,0]
-
-if screen_size != mon.getSizePix():
-    center[0] = (mon.getSizePix()[0]/2) - (screen_size[0]/2)
-    center[1] = (mon.getSizePix()[1]/2) - (screen_size[1]/2)
 
 
 # Specify colors using the DKL colorspace
@@ -202,13 +200,13 @@ criterion = .95 #accuracy
 response_failure_reward = -5
 
 
-inst_key = 's'
+left_key = "2"
+right_key = "1"
+inst_key = left_key
 
-left_key = 'f'
-right_key = 'a'
+escape_key = "escape"
 
 
-escape_key = 'escape'
 
 
 severe_error_color = dkl_red #SEVERE error: no response or too fast. -x points.

@@ -5,20 +5,20 @@ from psychopy.tools.colorspacetools import rgb2dklCart
 import numpy as np
 from random import shuffle
 
-#
-# #eyetracking
-# import #pylink
-# from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy
-# from PIL import Image
-#
-# dummyMode = True # Simulated connection to the tracker; press ESCAPE to skip calibration/validation
-#
-#
-# # establish a link to the tracker
-# if not dummyMode:
-#     #tk = #pylink.EyeLink('100.1.1.1')
-# else:
-#     #tk = #pylink.EyeLink(None)
+
+#eyetracking
+import pylink
+from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy
+from PIL import Image
+
+dummyMode = False # Simulated connection to the tracker; press ESCAPE to skip calibration/validation
+
+
+# establish a link to the tracker
+if not dummyMode:
+    tk = pylink.EyeLink('100.1.1.1')
+else:
+    tk = pylink.EyeLink(None)
 
 
 current_time = datetime.datetime.today().strftime("%m%d%Y_%H%M%S")
@@ -54,7 +54,6 @@ parent_directory = os.path.dirname(os.getcwd())
 image_directory = parent_directory + "/images/"
 exp_param_directory = parent_directory + "/experimental_parameters/reward_parameters/"
 data_directory = parent_directory + "/data/BIDS/"
-# edf_directory = parent_directory + "/data/eyetracking_data/reward_pupil_data/"
 run_info_directory = parent_directory + "/data/run_info_data/"
 
 # deterministic_exp_param_directory = os.getcwd() + '/experimental_parameters/deterministic_schedules/'
@@ -157,18 +156,14 @@ edf_output_file_name = str(subj_id) + str(condition)  # can only be 8 characters
 output_path_edf = edf_directory + edf_output_file_name
 
 
-# # create an eye-tracking data (EDF) folder
-# if not os.path.exists(edf_directory):
-#     os.makedirs(edf_directory)
+# create an eye-tracking data (EDF) folder
+if not os.path.exists(edf_directory):
+    os.makedirs(edf_directory)
 
+dataFileName = edf_output_file_name + ".EDF"
+tk.openDataFile(dataFileName)
 
-#
-
-# dataFileName = edf_output_file_name + ".EDF"
-# print(dataFileName)
-# tk.openDataFile(dataFileName)
-
-# tk.sendCommand("add_file_preamble_text " + str(output_file_name))
+tk.sendCommand("add_file_preamble_text " + str(output_file_name))
 
 # specify constants
 exp_param = read_csv(exp_param_file, header=0)
@@ -374,61 +369,61 @@ male_greeble_sample = visual.ImageStim(
 )
 
 
-# genv = EyeLinkCoreGraphicsPsychoPy(#tk, window)
-# #pylink.openGraphicsEx(genv)
+genv = EyeLinkCoreGraphicsPsychoPy(tk, window)
+pylink.openGraphicsEx(genv)
 
-# tk.setOfflineMode()
-# sampling rate, 250, 500, 1000, or 2000; this command won't work for EyeLInk II/I
-# tk.sendCommand('sample_rate 1000')
+tk.setOfflineMode()
+# sampling rate, 250, 500, 1000, or 2000; #this command won't work for EyeLInk II/I
+tk.sendCommand('sample_rate 1000')
 
 # inform the tracker the resolution of the subject display
 # [see Eyelink Installation Guide, Section 8.4: Customizing Your PHYSICAL.INI Settings ]
-# tk.sendCommand("screen_pixel_coords = 0 0 %d %d" % (window_size[0]-1, window_size[1]-1))
+tk.sendCommand("screen_pixel_coords = 0 0 %d %d" % (window_size[0]-1, window_size[1]-1))
 
 # save display resolution in EDF data file for Data Viewer integration purposes
 # [see Data Viewer User Manual, Section 7: Protocol for EyeLink Data to Viewer Integration]
-# tk.sendMessage("DISPLAY_COORDS = 0 0 %d %d" % (window_size[0]-1, window_size[1]-1))
+tk.sendMessage("DISPLAY_COORDS = 0 0 %d %d" % (window_size[0]-1, window_size[1]-1))
 
 # specify the calibration type, H3, HV3, HV5, HV13 (HV = horiz./vertical),
-# tk.sendCommand("calibration_type = HV5") # #tk.setCalibrationType('HV9') also works, see the #pylink manual
+tk.sendCommand("calibration_type = HV5") #tk.setCalibrationType('HV9') also works, see the #pylink manual
 
 
 # the model of the tracker, 1-EyeLink I, 2-EyeLink II, 3-Newer models (100/1000Plus/DUO)
-# eyelinkVer = #tk.getTrackerVersion()
+eyelinkVer = tk.getTrackerVersion()
 
 
 # turn off scenelink camera stuff (EyeLink II/I only)
-# if eyelinkVer == 2: #tk.sendCommand("scene_camera_gazemap = NO")
+if eyelinkVer == 2: tk.sendCommand("scene_camera_gazemap = NO")
 
-# Set the tracker to parse Events using "GAZE" (or "HREF") data
-# tk.sendCommand("recording_parse_type = GAZE")
+#Set the tracker to parse Events using "GAZE" (or "HREF") data
+tk.sendCommand("recording_parse_type = GAZE")
 
 # Online parser configuration: 0-> standard/coginitve, 1-> sensitive/psychophysiological
 # the Parser for EyeLink I is more conservative, see below
 # [see Eyelink User Manual, Section 4.3: EyeLink Parser Configuration]
-# if eyelinkVer>=2: #tk.sendCommand('select_parser_configuration 0')
+if eyelinkVer>=2: tk.sendCommand('select_parser_configuration 0')
 
-# # get Host tracking software version
-# hostVer = 0
-# if eyelinkVer == 3:
-#     tvstr  = #tk.getTrackerVersionString()
-#     vindex = tvstr.find("EYELINK CL")
-#     hostVer = int(float(tvstr[(vindex + len("EYELINK CL")):].strip()))
-#
+# get Host tracking software version
+hostVer = 0
+if eyelinkVer == 3:
+    tvstr  = tk.getTrackerVersionString()
+    vindex = tvstr.find("EYELINK CL")
+    hostVer = int(float(tvstr[(vindex + len("EYELINK CL")):].strip()))
+
 
 # specify the EVENT and SAMPLE data that are stored in EDF or retrievable from the Link
 # See Section 4 Data Files of the EyeLink user manual
-# tk.sendCommand("file_event_filter = LEFT,FIXATION,SACCADE,BLINK,MESSAGE,BUTTON,INPUT")
-# tk.sendCommand("link_event_filter = LEFT,FIXATION,FIXUPDATE,SACCADE,BLINK,BUTTON,INPUT")
-# if hostVer>=4:
-#     #tk.sendCommand("file_sample_data  = LEFT,GAZE,AREA,GAZERES,STATUS,HTARGET,INPUT")
-#     #tk.sendCommand("link_sample_data  = LEFT,GAZE,GAZERES,AREA,STATUS,HTARGET,INPUT")
-# else:
-#     #tk.sendCommand("file_sample_data  = LEFT,GAZE,AREA,GAZERES,STATUS,INPUT")
-#     #tk.sendCommand("link_sample_data  = LEFT,GAZE,GAZERES,AREA,STATUS,INPUT")
+tk.sendCommand("file_event_filter = LEFT,FIXATION,SACCADE,BLINK,MESSAGE,BUTTON,INPUT")
+tk.sendCommand("link_event_filter = LEFT,FIXATION,FIXUPDATE,SACCADE,BLINK,BUTTON,INPUT")
+if hostVer>=4:
+    tk.sendCommand("file_sample_data  = LEFT,GAZE,AREA,GAZERES,STATUS,HTARGET,INPUT")
+    tk.sendCommand("link_sample_data  = LEFT,GAZE,GAZERES,AREA,STATUS,HTARGET,INPUT")
+else:
+    tk.sendCommand("file_sample_data  = LEFT,GAZE,AREA,GAZERES,STATUS,INPUT")
+    tk.sendCommand("link_sample_data  = LEFT,GAZE,GAZERES,AREA,STATUS,INPUT")
 
 
-# tk.setPupilSizeDiameter("YES")  #get pupil diameter, not area
+tk.setPupilSizeDiameter("YES")  #get pupil diameter, not area
 
 
 # take in an image list
@@ -540,23 +535,23 @@ f_image_list = [
 ]
 
 
-# # show some instructions here.
-# msg = visual.TextStim(window, text = 'Press ENTER thrice to calibrate the tracker.')
-# msg.draw()
-# window.flip()
-# event.waitKeys()
+# show some instructions here.
+msg = visual.TextStim(window, text = 'Press ENTER thrice to calibrate the tracker.')
+msg.draw()
+window.flip()
+event.waitKeys()
 
 # set up the camera and calibrate the tracker at the beginning of each block
-# tk.doTrackerSetup()
+tk.doTrackerSetup()
 
 # start recording, parameters specify whether events and samples are
 # stored in file, and available over the link
-# error = #tk.startRecording(1,1,1,1)
-# #pylink.pumpDelay(100) # wait for 100 ms to make sure data of interest is recorded
-#
-# #determine which eye(s) are available
-# eyeTracked = #tk.eyeAvailable()
-# if eyeTracked==2: eyeTracked = 1
+error = tk.startRecording(1,1,1,1)
+pylink.pumpDelay(100) # wait for 100 ms to make sure data of interest is recorded
+
+#determine which eye(s) are available
+eyeTracked = tk.eyeAvailable()
+if eyeTracked==2: eyeTracked = 1
 
 
 # give instructions
@@ -609,7 +604,7 @@ inst_msg.setAutoDraw(False)
 window.flip()
 
 
-trigger = "t"
+trigger = "5"
 trigger_wait_instructions = "Waiting for trigger from the scanner..."
 
 
@@ -640,18 +635,14 @@ fixation_point_reward_total.setPos([0, 15])
 # present choices
 while t < n_trials:
 
-    # if n_trials%80 == 0:
-    #     # set up the camera and calibrate the tracker at the beginning of each block
-    #     #tk.doTrackerSetup()
-
     # reverse high value target according to reward vec.
     if obs_cp_list[t] == 1:
         cue_list.reverse()
 
     # trial has started, get time
     trial_start = expTime_clock.getTime() - start_time
-    # tk.sendMessage('trial_start')
-    # tk.sendMessage('TRIALID') #this is a parsing signal for the proprietary data viewer
+    tk.sendMessage('trial_start')
+    tk.sendMessage('TRIALID') #this is a parsing signal for the proprietary data viewer
 
     trial_onset_list.append(trial_start)
 
@@ -670,7 +661,7 @@ while t < n_trials:
     window.flip()
 
     stim_onset_time = expTime_clock.getTime()
-    # tk.sendMessage('stim_onset')
+    tk.sendMessage('stim_onset')
 
     stim_onset_list.append(stim_onset_time)
 
@@ -681,7 +672,7 @@ while t < n_trials:
 
     abs_response_time = expTime_clock.getTime()
     abs_response_time_list.append(abs_response_time)
-    # tk.sendMessage('response')
+    tk.sendMessage('response')
 
     if response is None:
         rt = np.nan  # no response
@@ -793,7 +784,7 @@ while t < n_trials:
     core.wait(
         mandatory_trial_time - trialTime_clock.getTime()
     )  # wait until mandatory trial time has passed
-    # tk.sendMessage('trial_end')
+    tk.sendMessage('trial_end')
 
     cue_list[0].setAutoDraw(False)
     cue_list[1].setAutoDraw(False)
@@ -802,23 +793,21 @@ while t < n_trials:
         trialTime_clock.getTime()
     )  # trial time will always be set, sanity check
 
-    # core.wait(fb_time) #wait for feedback time
-
     # jitter iti & continue to show bank as fixation point
     fixation_point_reward_total.color = neutral_color
     window.flip()
     stim_offset_time = expTime_clock.getTime()
-    # tk.sendMessage('stim_offset')
+    tk.sendMessage('stim_offset')
 
     stim_offset_list.append(stim_offset_time)
-    # tk.sendMessage('iti_begin')
+    tk.sendMessage('iti_begin')
 
     core.wait(iti_list[t])
-    # response = event.getKeys(keyList=[escape_key])
-    # if escape_key in response:
-    #     sys.exit()
-    # tk.sendMessage('iti_end')
-    # tk.sendMessage('TRIAL_RESULT') #this is a parsing signal for the proprietary data viewer
+    response = event.getKeys(keyList=[escape_key])
+    if escape_key in response:
+        sys.exit()
+    tk.sendMessage('iti_end')
+    tk.sendMessage('TRIAL_RESULT') #this is a parsing signal for the proprietary data viewer
 
     window.flip()
 
@@ -904,15 +893,15 @@ run_end_msg_text = (
     + " coins.\nYou have reached the end of the run.\nPlease wait for the experimenter to continue."
 )
 # dismiss participant
-# tk.sendMessage('instruction_phase_onset')
+tk.sendMessage('instruction_phase_onset')
 end_msg.text = run_end_msg_text
 end_msg.draw()
 core.wait(2)
 window.flip()
-# tk.sendMessage('instruction_phase_offset')
+tk.sendMessage('instruction_phase_offset')
 
-# pylink.pumpDelay(100)
-# tk.stopRecording() # stop recording
+pylink.pumpDelay(100)
+tk.stopRecording() # stop recording
 
 
 # save tsv events data
@@ -952,22 +941,22 @@ np.savetxt(
 
 
 # close the EDF data file
-# tk.setOfflineMode()
-# tk.closeDataFile()
-# #pylink.pumpDelay(50)
+tk.setOfflineMode()
+tk.closeDataFile()
+pylink.pumpDelay(50)
 
-# # Get the EDF data and say goodbye
-# msg.text='Data transferring.....'
-# msg.draw()
-# window.flip()
-# #tk.receiveDataFile(dataFileName, edf_directory + dataFileName)
-# core.wait(2)
-# #close the link to the tracker
-# #tk.close()
-#
-# # close the graphics
-# #pylink.closeGraphics()
-#
+# Get the EDF data and say goodbye
+msg.text='EDF data transferring...'
+msg.draw()
+window.flip()
+tk.receiveDataFile(dataFileName, edf_directory + dataFileName)
+core.wait(2)
+#close the link to the tracker
+tk.close()
+
+# close the graphics
+pylink.closeGraphics()
+
 
 response = event.waitKeys(keyList=[escape_key])
 

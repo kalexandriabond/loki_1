@@ -424,7 +424,7 @@ while run_n < 7:
             elif np.isnan(choice):
                 LR_choice_list.append(np.nan)
 
-            print("Button Press: " + choice)
+            print("Button Press: " + str(choice))
 
             # core.wait(0.1)
             fixation_cross.color = neutral_color

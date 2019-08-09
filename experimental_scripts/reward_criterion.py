@@ -88,7 +88,7 @@ horiz_txt_break = "\t"*5
 instructions_p1 = ("You are going on a treasure hunt! You will start with " + str(total_reward) +  " coins, and you will be able to pay a coin " +
 "to ask one of two greebles if they have money. On each trial you will meet two greebles: one is female, one is male." + small_vertical_txt_break + "This is a female." + horiz_txt_break +
 "This is a male." + vertical_txt_break +
-"Note how their features differ. The female greeble has a downward facing appendage, whereas the male greeble has an upward facing appendage.\n\nPress the green button when you're ready to continue to the next instruction screen.  ")
+"Note how their features differ. The female greeble has a downward facing appendage, whereas the male greeble has an upward facing appendage.\n\nPress the left button when you're ready to continue to the next instruction screen.  ")
 
 instructions_p2 = ("On each trial you can ask either the male or female greeble for money. If the greeble you ask chooses to give you money, " +
 "he or she will give you a certain number of coins to add to your bank.\n\nSometimes females will give coins more often. Sometimes males will give coins more often. " +
@@ -98,17 +98,17 @@ instructions_p3 = ("The total amount of money that you have is shown as a bank a
 "If you lose money, the bank will turn yellow.\n\nIf you choose too slowly or too quickly, you will lose 5 points and the bank at the center of the screen will turn red.\n Each point you earn will correspond to one real cent that you will be paid in addition to your hourly pay. So do the best you can!")
 
 
-instructions_p4 = ("To ask the left greeble for money, press the left (yellow) button with your left thumb. " +
-"To ask the right greeble for money press the right (red) button with your right thumb.\n\n" +
-"Between trials, please focus your eyes on the bank.\n\nPress the green button when you are ready to begin the hunt!")
+instructions_p4 = ("To ask the left greeble for money, press the left button with your left thumb. " +
+"To ask the right greeble for money press the right button with your right thumb.\n\n" +
+"Between trials, please focus your eyes on the bank.\n\nPress the left button when you are ready to begin the hunt!")
 
 
-instructions_p5 = ("Do your best to focus on the bank. Press the green button to start the task.")
+instructions_p5 = ("Do your best to focus on the bank. Press the left button to start the task.")
 
 
 slow_trial = ("Too slow! \nChoose quickly.")
 fast_trial = ("Too fast! \nSlow down.")
-between_run_inst = ("Feel free to take a break! \nPress the green button when you're ready to continue.")
+between_run_inst = ("Feel free to take a break! \nPress the left button when you're ready to continue.")
 
 
 

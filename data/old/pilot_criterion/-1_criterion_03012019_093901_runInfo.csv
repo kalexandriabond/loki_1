@@ -1,0 +1,2 @@
+psychopy_version, python_version, pythonScipyVersion,pyglet_version, pygame_version, numpy_version, wx_version, window_refresh_time_avg_ms,begin_time, exp_dir, last_sys_reboot, system_platform, internet_access, total_exp_time
+3.0.4,3.6.8,1.2.1,1.3.2,1.9.4,1.15.4,4.0.4 gtk2 (phoenix) wxWidgets 3.0.5,16.675598372831562,2019_03_01 09:39 (Year_Month_Day Hour:Min),/home/coaxlab/Dropbox/loki_1/fmri_experiment,2019-02-24 20:15,linux 4.18.0-15-generic,True,17.143169566988945

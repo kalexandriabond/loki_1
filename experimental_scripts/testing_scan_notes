@@ -1,0 +1,45 @@
+Things to do 
+
+output events.tsv file with time stamp for each event. rts and acc.
+trial type will be the trial number 
+ask Javi for more details 
+
+
+two mondays from now ask about the isoluminance calibration.
+ will need to move the display, and it will take a couple of hours. 
+ 
+ 
+Check button presses with wand. DONE
+
+check trigger. DONE
+ 
+find the maximum time that each run could take and set that as the run time. will maybe need to modify the timing. DONE-ish... need to double-check. 
+ 
+
+run one run all the way the way through. figure out the total timing. 
+ 
+ what is the theoretical maximum time for each run? based on the truncated ITI distribution.
+ 
+16 s is the max.  1.5 mandatory time within trial. 
+
+max shouldnt be the criterion... is absurdly nonrep. 
+
+so if the iti is predetermined, then just get the max observed iti, not theoretical according to the exponential dist. 
+
+
+n_itis = n_trials - 1 Is the last iti included? Check exp. scripts. 
+
+should be 10.2 m per run max. will have to check when they're divided by run instead of grouped.
+
+10 min.  20 s. 
+
+24 s over. 
+
+400 measurements is 10 min. 11 s. 
+
+
+
+Reduce the iti to 9 min. 
+
+
+mkdir sub- + sub_id 

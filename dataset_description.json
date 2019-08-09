@@ -1,0 +1,21 @@
+{
+   "Name": "Loki_1",
+   "BIDSVersion":  "1.2.0",
+   "License": "GNU GPL v3.0",
+   "Authors": [
+     "Krista M. Bond", "Aria Y. Wang", "Michael J. Tarr", "Timothy D. Verstynen"
+   ],
+   "Acknowledgements": "We thank Alexis Porter for lending her expertise in BIDS,
+    John Pyles, Michael Granovetter, and Marge Maallo for working with us
+    to configure the eyetracker at a new scanning facility,
+    and Scott Kurdilla for his role as our MRI technologist.
+    Lastly, we thank our participants for their patience.",
+   "HowToAcknowledge": "Please cite this paper: link TBD",
+   "Funding": [
+     "AFRL", 
+   ],
+   "ReferencesAndLinks": [
+     "publication link TBD","publication reference TBD"
+   ],
+   "DatasetDOI": "TBD"
+ }

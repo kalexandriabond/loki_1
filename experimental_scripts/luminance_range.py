@@ -36,18 +36,17 @@ show=0, order=[ 'CoAx ID [####]','Session Number [#]',
 
 
 sub_inf_dlg.show()
-subj_id = user_input_dict['CoAx ID [####]']
-session_n = user_input_dict['Session Number [#]']
-condition = user_input_dict['Condition [####] (probability-lambda; e.g., 6510)'] #condition is coded as prob-lambda [65-10]
+subj_id = int(float(user_input_dict['CoAx ID [####]']))
+session_n = int(float(user_input_dict['Session Number [#]']))
+condition = int(float(user_input_dict['Condition [####] (probability-lambda; e.g., 6510)'])) #condition is coded as prob-lambda [65-10]
 
 
 subj_directory = data_directory + "sub-" + "{:04d}".format(subj_id) + "/"
 session_directory = subj_directory + "ses-" + "{:02d}".format(session_n) + "/"
 
-behavioral_directory = session_directory + "beh/"
 edf_directory = session_directory + "pupil/"
 
-directories = list([behavioral_directory, edf_directory])
+directories = list([edf_directory])
 
 for dir in directories:
     if not os.path.exists(dir):
@@ -64,9 +63,6 @@ output_file_name = (
     + "lum-"
     + "lokicat"
     + "_"
-    + "run"
-    + "{:02d}".format(run)
-    + "_"
     + str(current_time)
 )
 
@@ -82,6 +78,7 @@ tk.sendCommand("add_file_preamble_text " + str(output_file_name))
 
 
 colors_file = exp_param_directory + 'sinusoidal_colors.csv'
+print(colors_file)
 
 if not os.path.exists(colors_file):
     sys.exit("Experimental parameter file does not exist.")

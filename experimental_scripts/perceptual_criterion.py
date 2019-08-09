@@ -144,7 +144,7 @@ speed_message_color = dkl_red
 
 window = visual.Window(size = screen_size, units='pix', monitor = mon, color = dkl_blue, \
        colorSpace = 'dkl', blendMode = 'avg', useFBO = True, allowGUI = \
-       False,fullscr=True, pos=center, screen=0)
+       False,fullscr=False, pos=center, screen=1)
 
 inst_msg = visual.TextStim(win=window, units='pix',antialias='False',colorSpace='rgb', color=inst_color, wrapWidth=screen_size[0]-400, height=screen_size[1]/32)
 end_msg = visual.TextStim(win=window, units='pix', antialias='False', wrapWidth=screen_size[0]-400,colorSpace='rgb', color=inst_color, height=screen_size[1]/32)

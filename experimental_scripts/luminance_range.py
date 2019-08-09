@@ -24,7 +24,7 @@ else:
 parent_directory = os.path.dirname(os.getcwd())
 
 exp_param_directory = parent_directory + '/experimental_parameters/'
-edf_data_directory = parent_directory + '/data/eyetracking_data/luminance_range_data/'
+data_directory = parent_directory + '/data/BIDS/'
 
 
 current_time = datetime.datetime.today().strftime("%m%d%Y_%H%M%S")
@@ -41,14 +41,38 @@ session_n = user_input_dict['Session Number [#]']
 condition = user_input_dict['Condition [####] (probability-lambda; e.g., 6510)'] #condition is coded as prob-lambda [65-10]
 
 
-output_file_name = subj_id + '_' + 'sess' + session_n + '_' + 'luminance' +  '_' + current_time
+subj_directory = data_directory + "sub-" + "{:04d}".format(subj_id) + "/"
+session_directory = subj_directory + "ses-" + "{:02d}".format(session_n) + "/"
+
+behavioral_directory = session_directory + "beh/"
+edf_directory = session_directory + "pupil/"
+
+directories = list([behavioral_directory, edf_directory])
+
+for dir in directories:
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
+
+output_file_name = (
+    "sub-"
+    + "{:04d}".format(subj_id)
+    + "_"
+    + "sess"
+    + "{:02d}".format(session_n)
+    + "_"
+    + "lum-"
+    + "lokicat"
+    + "_"
+    + "run"
+    + "{:02d}".format(run)
+    + "_"
+    + str(current_time)
+)
 
 
 #eyetracking data
 edf_output_file_name = str(subj_id) + 'lum' + str(session_n) #can only be 8 characters
-
-#create an eye-tracking data (EDF) folder
-if not os.path.exists(edf_data_directory): os.makedirs(edf_data_directory)
 
 dataFileName = edf_output_file_name + '.EDF'
 tk.openDataFile(dataFileName)
@@ -58,16 +82,24 @@ tk.sendCommand("add_file_preamble_text " + str(output_file_name))
 
 
 colors_file = exp_param_directory + 'sinusoidal_colors.csv'
+
+if not os.path.exists(colors_file):
+    sys.exit("Experimental parameter file does not exist.")
+
 colors = read_csv(colors_file, header=0)
 colors.columns = colors.columns.str.strip()
 
-colors_list=colors.color.tolist()
+colors_list = colors.color.tolist()
 
-screen_size = [1280, 1024]
-center = [0,0]
-mon = monitors.Monitor('ET_display_computer', width=36., distance=64.)
+screen_size = (1920., 1080.)  # screen size in pixels
+window_size = (1280., 800.)
+mon = monitors.Monitor(
+    "BOLD_display", width=79.7, distance=138,
+)  # width and distance in cm
 mon.setSizePix(screen_size)
 mon.saveMon()
+
+center = (0,0)
 
 
 
@@ -155,10 +187,14 @@ if eyeTracked==2: eyeTracked = 1
 
 
 
-inst_key = 's'
+
+left_key = "2"
+right_key = "1"
+inst_key = left_key
+
 escape_key = 'escape'
 
-instructions = ("Now we are going to test the range of your pupillary response. During this task, simply focus on the cross at the center of the screen. \n\nPress the green button when you are ready to start.")
+instructions = ("Now we are going to test the range of your pupillary response. During this task, simply focus on the cross at the center of the screen. \n\nPress the left button when you are ready to start.")
 inst_msg = visual.TextStim(win=rgb_window, units='pix',antialias='False',colorSpace='rgb', color=[1,1,1], wrapWidth=screen_size[0]-400, height=screen_size[1]/32)
 
 #give instructions
@@ -210,7 +246,7 @@ rgb_window.flip()
 msg.text='Data transferring.....'
 msg.draw()
 rgb_window.flip()
-tk.receiveDataFile(dataFileName, edf_data_directory + dataFileName)
+tk.receiveDataFile(dataFileName, edf_directory + dataFileName)
 core.wait(2)
 #close the link to the tracker
 tk.close()

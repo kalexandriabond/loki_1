@@ -11,7 +11,7 @@ import pylink
 from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy
 from PIL import Image
 
-dummyMode = True # Simulated connection to the tracker; press ESCAPE to skip calibration/validation
+dummyMode = False # Simulated connection to the tracker; press ESCAPE to skip calibration/validation
 
 
 # establish a link to the tracker

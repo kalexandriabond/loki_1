@@ -22,7 +22,7 @@ parent_directory = os.path.dirname(os.getcwd())
 
 image_directory = parent_directory + '/images/'
 exp_param_directory = parent_directory + '/experimental_parameters/criterion_parameters/reward_criterion_parameters/'
-data_directory = parent_directory + '/data/criterion_data/'
+data_directory = parent_directory + '/data/BIDS/'
 run_info_directory = parent_directory + '/data/run_info_data/'
 
 # deterministic_exp_param_directory = os.getcwd() + '/experimental_parameters/deterministic_schedules/'
@@ -126,17 +126,15 @@ expTime_clock = core.Clock()
 trialTime_clock = core.Clock()
 rt_clock = core.Clock()
 
-screen_size = [1280, 1024]
-mon = monitors.Monitor('ET_display_computer', width=36., distance=64.)
+screen_size = (1920., 1080.)  # screen size in pixels
+window_size = (1280., 800.)
+mon = monitors.Monitor(
+    "BOLD_display", width=79.7, distance=138,
+)  # width and distance in cm
 mon.setSizePix(screen_size)
 mon.saveMon()
 
-center=[0,0]
-
-
-if screen_size != mon.getSizePix():
-    center[0] = (mon.getSizePix()[0]/2) - (screen_size[0]/2)
-    center[1] = (mon.getSizePix()[1]/2) - (screen_size[1]/2)
+center = (0,0)
 
 luminance = 10
 contrast = 1
@@ -209,12 +207,11 @@ rt_min = .1
 mandatory_trial_time = 1.5
 
 
-inst_key = 's'
+left_key = "2"
+right_key = "1"
+inst_key = left_key
 
-left_key = 'f'
-right_key = 'a'
-
-escape_key = 'escape'
+escape_key = "escape"
 
 
 severe_error_color = dkl_red #SEVERE error: no response or too fast. -x points.

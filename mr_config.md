@@ -21,7 +21,7 @@ If off - push power
     * Should Display:
        >`HHSC-2X1-CYL`<br>
        >`HID KEY 12345`
-7) Test response output codes with a text editor (2 is yellow, 1 is blue)
+**7) Test response output codes with a text editor (2 is left, 1 is right)**
 
 **Eyetracking**
 

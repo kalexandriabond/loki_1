@@ -30,6 +30,7 @@ _ _ _
 + make abs. sure trigger is 5
 + makes sure lum script is functioning properly  
 + generate the reward files for the new subjects (790 + 811) 
++ ~~add in all the eyetracking stuff~~
 
 + John: Also, I can’t quite remember from looking at your program today, but after the last screen of instructions you should time out to a fixation cross that the subject can look at before the scan starts. You don’t want instructions still displayed and the fixation to be cued by the MRI trigger because that increases the chance the subject will be moving their eyes during the reference scans collected before the first trigger is sent. During the reference scan is the most important time when the subject should remain still and not move their eyes so they should have a fixation during that period. 
 

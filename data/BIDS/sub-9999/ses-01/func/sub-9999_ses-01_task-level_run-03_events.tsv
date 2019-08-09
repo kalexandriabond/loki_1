@@ -1,0 +1,10 @@
+stim_onset, stim_duration, stim_greebles, trial_num, trial_type, level_onset, level_label_duration, rt, choice
+[10.064812183380127, 20.096374034881592, 30.11124610900879, 40.12614107131958, 50.141273021698]
+[2.015544891357422, 0.29975318908691406, 0.44937992095947266, 0.6993091106414795, 0.41646909713745117]
+['/Users/coax_lab/Desktop/loki_1/images/symm_greebles/m5~55-v1.tif', '/Users/coax_lab/Desktop/loki_1/images/symm_greebles/m5~55-v1.tif', '/Users/coax_lab/Desktop/loki_1/images/symm_greebles/f1~15-v1.tif', '/Users/coax_lab/Desktop/loki_1/images/symm_greebles/f3~39-v1.tif', '/Users/coax_lab/Desktop/loki_1/images/symm_greebles/f3~310-v1.tif']
+[0, 1, 2, 3, 4, 5, 6, 7]
+['Sex']
+[0.015325069427490234]
+[5.016232967376709]
+[0.28736019134521484, 0.4403839111328125, 0.6891829967498779, 0.40969085693359375]
+[76, 76, 76, 76]

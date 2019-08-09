@@ -1,0 +1,12 @@
+<><><><><><><><> 
+FFA/LOC/PPA LOCALIZER 
+Matlab version  9.6.0.1072779 (R2019a) 
+Begin: 08-Aug-2019 15:55:58 
+SubjID: 9999 
+Run Number: 3 
+TR: 2.000000 
+Total Blocks: 15 
+<><><><><><><><> 
+<><><><><><><><> 
+Script Start ::  08-Aug-2019 15:55:58 
+Trial No.	Block	Face(1)/Object(2)/Scenes(3)/Scrambled(4)	Trial	TR	Stim No.	Presentation Time(s)	StimEndTime(s)	TrialEndTime(s)	Response	Correct?	RT(ms)	<><><><><><><><>

@@ -11,7 +11,7 @@ import pylink
 from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy
 from PIL import Image
 
-dummyMode = False # Simulated connection to the tracker; press ESCAPE to skip calibration/validation
+dummyMode = True # Simulated connection to the tracker; press ESCAPE to skip calibration/validation
 
 
 # establish a link to the tracker
@@ -376,31 +376,31 @@ tk.setOfflineMode()
 # sampling rate, 250, 500, 1000, or 2000; #this command won't work for EyeLInk II/I
 tk.sendCommand('sample_rate 1000')
 
-inform the tracker the resolution of the subject display
-[see Eyelink Installation Guide, Section 8.4: Customizing Your PHYSICAL.INI Settings ]
+# inform the tracker the resolution of the subject display
+# [see Eyelink Installation Guide, Section 8.4: Customizing Your PHYSICAL.INI Settings ]
 tk.sendCommand("screen_pixel_coords = 0 0 %d %d" % (window_size[0]-1, window_size[1]-1))
 
-save display resolution in EDF data file for Data Viewer integration purposes
-[see Data Viewer User Manual, Section 7: Protocol for EyeLink Data to Viewer Integration]
+# save display resolution in EDF data file for Data Viewer integration purposes
+# [see Data Viewer User Manual, Section 7: Protocol for EyeLink Data to Viewer Integration]
 tk.sendMessage("DISPLAY_COORDS = 0 0 %d %d" % (window_size[0]-1, window_size[1]-1))
 
-specify the calibration type, H3, HV3, HV5, HV13 (HV = horiz./vertical),
+# specify the calibration type, H3, HV3, HV5, HV13 (HV = horiz./vertical),
 tk.sendCommand("calibration_type = HV5") #tk.setCalibrationType('HV9') also works, see the #pylink manual
 
 
-the model of the tracker, 1-EyeLink I, 2-EyeLink II, 3-Newer models (100/1000Plus/DUO)
+# the model of the tracker, 1-EyeLink I, 2-EyeLink II, 3-Newer models (100/1000Plus/DUO)
 eyelinkVer = tk.getTrackerVersion()
 
 
-turn off scenelink camera stuff (EyeLink II/I only)
+# turn off scenelink camera stuff (EyeLink II/I only)
 if eyelinkVer == 2: tk.sendCommand("scene_camera_gazemap = NO")
 
 #Set the tracker to parse Events using "GAZE" (or "HREF") data
 tk.sendCommand("recording_parse_type = GAZE")
 
-Online parser configuration: 0-> standard/coginitve, 1-> sensitive/psychophysiological
-the Parser for EyeLink I is more conservative, see below
-[see Eyelink User Manual, Section 4.3: EyeLink Parser Configuration]
+# Online parser configuration: 0-> standard/coginitve, 1-> sensitive/psychophysiological
+# the Parser for EyeLink I is more conservative, see below
+# [see Eyelink User Manual, Section 4.3: EyeLink Parser Configuration]
 if eyelinkVer>=2: tk.sendCommand('select_parser_configuration 0')
 
 # get Host tracking software version
@@ -411,8 +411,8 @@ if eyelinkVer == 3:
     hostVer = int(float(tvstr[(vindex + len("EYELINK CL")):].strip()))
 
 
-specify the EVENT and SAMPLE data that are stored in EDF or retrievable from the Link
-See Section 4 Data Files of the EyeLink user manual
+# specify the EVENT and SAMPLE data that are stored in EDF or retrievable from the Link
+# See Section 4 Data Files of the EyeLink user manual
 tk.sendCommand("file_event_filter = LEFT,FIXATION,SACCADE,BLINK,MESSAGE,BUTTON,INPUT")
 tk.sendCommand("link_event_filter = LEFT,FIXATION,FIXUPDATE,SACCADE,BLINK,BUTTON,INPUT")
 if hostVer>=4:
@@ -541,11 +541,11 @@ msg.draw()
 window.flip()
 event.waitKeys()
 
-set up the camera and calibrate the tracker at the beginning of each block
+# set up the camera and calibrate the tracker at the beginning of each block
 tk.doTrackerSetup()
 
-start recording, parameters specify whether events and samples are
-stored in file, and available over the link
+# start recording, parameters specify whether events and samples are
+# stored in file, and available over the link
 error = tk.startRecording(1,1,1,1)
 pylink.pumpDelay(100) # wait for 100 ms to make sure data of interest is recorded
 

@@ -49,3 +49,5 @@ Will need to order EKG and respiration equipment.
 ___
 
 At the end of the session, ask Scott if everything needs to be shut down.
+
+**For each session, record the position, orientation, and phase encoding direction.**

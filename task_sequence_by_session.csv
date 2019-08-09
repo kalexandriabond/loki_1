@@ -1,0 +1,12 @@
+session_1,session_2,session_3,session_4,session_5,session_6,session_7,session_8,session_9,session_10,session_11
+F,CLR,CLR,CLR,CLR,CLR,CLR,CLR,CLR,CLR,F
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+C = perceptual criterion task ,,,,,,,,,,
+F = family classification task ,,,,,,,,,,
+L = luminance range task ,,,,,,,,,,
+R = reward-learning task,,,,,,,,,,
+,,,,,,,,,,
+See 'reward_condition_order.csv' for the sequence of reward conditions for each participant. ,,,,,,,,,,

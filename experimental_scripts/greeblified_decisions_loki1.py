@@ -369,7 +369,7 @@ male_greeble_sample = visual.ImageStim(
 )
 
 
-genv = EyeLinkCoreGraphicsPsychoPy(#tk, window)
+genv = EyeLinkCoreGraphicsPsychoPy(tk, window)
 pylink.openGraphicsEx(genv)
 
 tk.setOfflineMode()

@@ -51,3 +51,4 @@ ___
 At the end of the session, ask Scott if everything needs to be shut down.
 
 **For each session, record the position, orientation, and phase encoding direction.**
+**Make sure that the mouse is on the BOLD screen for trigger detection and response collection.**

@@ -57,11 +57,11 @@ output_file_name = (
     "sub-"
     + "{:04d}".format(subj_id)
     + "_"
-    + "sess"
+    + "ses"
     + "{:02d}".format(session_n)
     + "_"
-    + "lum-"
-    + "lokicat"
+    + "task-"
+    + "lum"
     + "_"
     + str(current_time)
 )

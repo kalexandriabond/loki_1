@@ -38,10 +38,32 @@ else:
     if not os.path.exists(exp_param_file):
         sys.exit("Experimental parameter file does not exist.")
 
-if testing:
-    output_file_name =  str(0) + '_' + 'criterion' + '_' + str(current_time)
-else:
-    output_file_name =  str(subj_id) + '_' + 'criterion' + '_' + str(current_time)
+
+
+subj_directory = data_directory + "sub-" + "{:04d}".format(subj_id) + "/"
+session_directory = subj_directory + "ses-" + "{:02d}".format(session_n) + "/"
+
+behavioral_directory = session_directory + "beh/"
+
+directories = list([behavioral_directory])
+
+for dir in directories:
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
+
+output_file_name = (
+    "sub-"
+    + "{:04d}".format(subj_id)
+    + "_"
+    + "ses"
+    + "{:02d}".format(session_n)
+    + "_"
+    + "task-"
+    + "perc_criterion"
+    + "_"
+    + str(current_time)
+)
 
 
 output_path = data_directory + output_file_name + ".json"

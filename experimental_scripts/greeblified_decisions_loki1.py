@@ -101,10 +101,10 @@ output_file_name = (
     "sub-"
     + "{:04d}".format(subj_id)
     + "_"
-    + "sess"
+    + "ses"
     + "{:02d}".format(session_n)
     + "_"
-    + "bold-task-"
+    + "task-"
     + "lokicat"
     + "_"
     + "run"

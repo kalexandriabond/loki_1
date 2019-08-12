@@ -957,6 +957,9 @@ tk.close()
 # close the graphics
 pylink.closeGraphics()
 
+msg.text = 'EDF data done transferring. Close window now.'
+msg.draw()
+window.flip()
 
 response = event.waitKeys(keyList=[escape_key])
 

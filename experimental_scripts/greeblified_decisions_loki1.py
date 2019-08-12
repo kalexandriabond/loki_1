@@ -152,7 +152,7 @@ if not testing and os.path.exists(output_path_readable_beh):
     sys.exit(output_file_name + " already exists! Overwrite danger...Exiting.")
 
 
-edf_output_file_name = str(subj_id) + str(condition)  # can only be 8 characters
+edf_output_file_name = str(subj_id) + str(condition) + str(run) # can only be 8 characters
 output_path_edf = edf_directory + edf_output_file_name
 
 

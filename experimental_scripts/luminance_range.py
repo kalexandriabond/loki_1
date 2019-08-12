@@ -102,7 +102,7 @@ center = (0,0)
 
 rgb_window = visual.Window(size = screen_size, units='pix', monitor = mon, color = [-1,-1,-1], \
        colorSpace = 'rgb', blendMode = 'avg', useFBO = True, allowGUI = \
-       False,fullscr=True, pos=center, screen=0)
+       False,fullscr=False, pos=center, screen=1)
 
 
 fixation_cross = visual.TextStim(win=rgb_window,units='pix',text='+', antialias='False',pos=[0,15], colorSpace='rgb', color=[-1,-1,-1], height=screen_size[0]/15)
@@ -165,7 +165,7 @@ else:
 tk.setPupilSizeDiameter("YES")  #get pupil diameter, not area
 
 # show some instructions here.
-msg = visual.TextStim(rgb_window, text = 'Press ENTER thrice to calibrate the tracker.')
+msg = visual.TextStim(rgb_window, text = 'Press ENTER to calibrate the tracker.')
 msg.draw()
 rgb_window.flip()
 event.waitKeys()

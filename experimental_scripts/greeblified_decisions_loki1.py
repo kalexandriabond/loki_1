@@ -536,7 +536,7 @@ f_image_list = [
 
 
 # show some instructions here.
-msg = visual.TextStim(window, text = 'Press ENTER thrice to calibrate the tracker.')
+msg = visual.TextStim(window, text = 'Press ENTER to calibrate the tracker.')
 msg.draw()
 window.flip()
 event.waitKeys()

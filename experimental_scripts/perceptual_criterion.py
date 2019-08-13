@@ -66,9 +66,9 @@ output_file_name = (
 )
 
 
-output_path = data_directory + output_file_name + ".json"
+output_path = behavioral_directory + output_file_name + ".json"
 
-output_path_readable = data_directory + output_file_name + ".csv"
+output_path_readable = behavioral_directory + output_file_name + ".csv"
 
 if not testing and os.path.exists(output_path):
     sys.exit(output_file_name + " already exists! Overwrite danger...Exiting.")

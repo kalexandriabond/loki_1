@@ -10,6 +10,7 @@
 1) Sex discrimination criterion (perform until .95 accurate)
 2) Reinforcement learning criterion task (perform until .80 accurate)
 3) Eye-tracking criterion (are their eyes trackable?)
+4) If they pass the criterion tasks, then scan their heads and order a headcase.
 
 **Enter experiment**
 

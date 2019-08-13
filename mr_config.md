@@ -30,6 +30,7 @@ If off - push power
 3) Switch to network switch c
 4) Turn the eyetracking host computer on manually (on computer itself)
 5) Turn eyetracking monitor on (select eyelink)
+6) Dim the lights (50%). 
 
 **Respiration & pulse oximetry** 
 

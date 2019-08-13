@@ -16,7 +16,7 @@ _ _ _
 @kmbond
 
 + ~~figure out session order for each person for RL task (just random, add the sequence for each person in csv)~~
-+ find best angle for LC using probabilistic LC atlas (right now doing AC/PC, more oblique?) **use anataomical landmarks, between inferior colliculus and the 4th ventricle**
++ find best angle for LC using probabilistic LC atlas (right now doing AC/PC, more oblique?) **use anataomical landmarks, between inferior colliculus and the 4th ventricle**. not going to capture? 
 + confirm run length for behavioral task < scan run **urgent. at 9.01 m** 
 + ~~test Eyelink data collection at new position~~
 + ~~confirm 1:1 mapping between position of button press and visual selection (add box to selection and confirm left button press corresponds to left visual selection)~~

@@ -16,16 +16,16 @@ _ _ _
 @kmbond
 
 + ~~figure out session order for each person for RL task (just random, add the sequence for each person in csv)~~
-+ find best angle for LC using probabilistic LC atlas (right now doing AC/PC, more oblique?) **urgent**
++ find best angle for LC using probabilistic LC atlas (right now doing AC/PC, more oblique?) **use anataomical landmarks, between inferior colliculus and the 4th ventricle**. not going to capture? 
 + confirm run length for behavioral task < scan run **urgent. at 9.01 m** 
 + ~~test Eyelink data collection at new position~~
-+ confirm 1:1 mapping between position of button press and visual selection (add box to selection and confirm left button press corresponds to left visual selection)
++ ~~confirm 1:1 mapping between position of button press and visual selection (add box to selection and confirm left button press corresponds to left visual selection)~~
 + ~~ask John to trim the head case for subject 1 (and check for subject 2)~~
 + ~~decide if it's even worth recruiting subject 2? 4 weeks left~~
 + analyze my own pilot data (neuroimaging + behavior)
 + ~~ask Javi when to do the RL task sessions~~
 + phase encoding issue with flywheel (error). collected both encoding versions. 
-+ make sure that the events file has the same formatting as the BIDS stuff on flywheel 
++ ~~make sure that the events file has the same formatting as the BIDS stuff on flywheel~~ 
 + BIDS conversion is manual, not automated. so after data collection, write a script to implement BIDS structure.
 + ~~make abs. sure trigger is 5~~
 + ~~makes sure lum script is functioning properly~~  

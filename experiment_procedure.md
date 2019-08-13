@@ -10,6 +10,7 @@
 1) Sex discrimination criterion (perform until .95 accurate)
 2) Reinforcement learning criterion task (perform until .80 accurate)
 3) Eye-tracking criterion (are their eyes trackable?)
+4) If they pass the criterion tasks, then scan their heads and order a headcase.
 
 **Enter experiment**
 
@@ -17,7 +18,7 @@
 1) Something here to test whether they understand the hierarchy? (@ariaaay)
 2) Perceptual learning session (baseline)
 3)  - Sex disc. criterion 
-    - RL criterion? 
+    ~~- RL criterion?~~ 
     - Luminance range test (test range of pupillary response) 
     - Reinforcement learning session (x9)
 4) Perceptual learning session (informed)

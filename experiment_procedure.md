@@ -13,7 +13,7 @@
 
 **Enter experiment**
 
-
+0) `git pull` on experiment computer
 1) Something here to test whether they understand the hierarchy? (@ariaaay)
 2) Perceptual learning session (baseline)
 3)  - Sex disc. criterion 

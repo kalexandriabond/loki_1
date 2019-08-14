@@ -28,25 +28,48 @@ run_info_directory = parent_directory + '/data/run_info_data/'
 
 # deterministic_exp_param_directory = os.getcwd() + '/experimental_parameters/deterministic_schedules/'
 
-if testing:
-    subj_id = 0
-    exp_param_file = exp_param_directory + 'test_reward_criterion.csv'
+session_n = 0
 
+if testing:
+    subj_id = 999
 else:
     sub_inf_dlg.show()
     subj_id = int(float(user_input_dict['CoAx ID [####]']))
-    exp_param_file = exp_param_directory + str(subj_id) + '_reward_criterion_9510.csv'
 
-    if not os.path.exists(exp_param_file):
-        sys.exit("Experimental parameter file does not exist.")
+exp_param_file = exp_param_directory + str(subj_id) + '_reward_criterion_9510.csv'
 
-if testing:
-    output_file_name =  'test_reward_criterion' + '_' + str(current_time)
-else:
-    output_file_name = str(subj_id) + '_' + 'reward_criterion' + '_9010_' + str(current_time)
+if not os.path.exists(exp_param_file):
+    sys.exit("Experimental parameter file does not exist.")
+
+subj_directory = data_directory + "sub-" + "{:04d}".format(subj_id) + "/"
+session_directory = subj_directory + "ses-" + "{:02d}".format(session_n) + "/"
+
+behavioral_directory = session_directory + "beh/"
+
+directories = list([behavioral_directory])
+
+for dir in directories:
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
+
+output_file_name = (
+    "sub-"
+    + "{:04d}".format(subj_id)
+    + "_"
+    + "ses"
+    + "{:02d}".format(session_n)
+    + "_"
+    + "task-"
+    + "reward-criterion"
+    + "_"
+    + str(current_time)
+)
+
 
 run_info_path = run_info_directory + output_file_name + "_runInfo.csv"
-output_path = data_directory + output_file_name + "_events.tsv"
+
+output_path = behavioral_directory + output_file_name + ".tsv"
 
 if not testing and os.path.exists(output_path):
     sys.exit(output_file_name + " already exists! Overwrite danger...Exiting.")

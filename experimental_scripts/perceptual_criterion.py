@@ -61,7 +61,7 @@ output_file_name = (
     + "{:02d}".format(session_n)
     + "_"
     + "task-"
-    + "perc_criterion"
+    + "perc-criterion"
     + "_"
     + str(current_time)
 )

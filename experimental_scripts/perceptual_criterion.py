@@ -33,7 +33,7 @@ else:
     sub_inf_dlg.show()
     subj_id = int(float(user_input_dict['CoAx ID [####]']))
     session_n = int(float(user_input_dict['Session Number [#]']))
-    exp_param_file = exp_param_directory + str(subj_id) + '_sess' + str(session_n) + '_' + 'criterion'+'.csv'
+    exp_param_file = exp_param_directory + str(subj_id) + '_sess' + str(session_n) + '_' + 'perceptual_criterion'+'.csv'
 
     if not os.path.exists(exp_param_file):
         sys.exit("Experimental parameter file does not exist.")
@@ -166,37 +166,37 @@ speed_message_color = dkl_red
 
 window = visual.Window(size = screen_size, units='pix', monitor = mon, color = dkl_blue, \
        colorSpace = 'dkl', blendMode = 'avg', useFBO = True, allowGUI = \
-       False,fullscr=False, pos=center, screen=1)
+       False, fullscr=False, pos=center, screen=1)
 
-inst_msg = visual.TextStim(win=window, units='pix',antialias='False',colorSpace='rgb', color=inst_color, wrapWidth=screen_size[0]-400, height=screen_size[1]/32)
-end_msg = visual.TextStim(win=window, units='pix', antialias='False', wrapWidth=screen_size[0]-400,colorSpace='rgb', color=inst_color, height=screen_size[1]/32)
-speed_msg = visual.TextStim(win=window, units='pix',antialias='False', text=slow_trial,  wrapWidth=screen_size[0]-400, height=screen_size[1]/15,
+inst_msg = visual.TextStim(win=window, units='pix',antialias='False',colorSpace='rgb', color=inst_color, wrapWidth=window_size[0]-400, height=window_size[1]/32)
+end_msg = visual.TextStim(win=window, units='pix', antialias='False', wrapWidth=window_size[0]-400,colorSpace='rgb', color=inst_color, height=window_size[1]/32)
+speed_msg = visual.TextStim(win=window, units='pix',antialias='False', text=slow_trial,  wrapWidth=window_size[0]-400, height=window_size[1]/15,
 alignHoriz='center', colorSpace='dkl',color=speed_message_color, bold=False)
 
 slow_trial = ("Too slow! \nChoose quickly.")
 fast_trial = ("Too fast! \nSlow down. \nYou can continue in 5 seconds.")
 
 #m/f from different families to emphasize dimension of interest (sex)
-female_greeble_sample = visual.ImageStim(window, image=image_directory + 'f1~11-v1.tif',units='pix',size=[screen_size[0]/5], colorSpace='dkl', color=greeble_color)
-male_greeble_sample = visual.ImageStim(window, image=image_directory + 'm2~21-v1.tif',units='pix',size=[screen_size[0]/5], colorSpace='dkl', color=greeble_color)
+female_greeble_sample = visual.ImageStim(window, image=image_directory + 'f1~11-v1.tif',units='pix',size=[window_size[0]/5], colorSpace='dkl', color=greeble_color)
+male_greeble_sample = visual.ImageStim(window, image=image_directory + 'm2~21-v1.tif',units='pix',size=[window_size[0]/5], colorSpace='dkl', color=greeble_color)
 
 bank_sample = visual.ImageStim(window, image=parent_directory + '/images/bank_sample.png',units='pix',size=None,colorSpace='dkl', color=[90,0,1])
 
 
 #take in an image list
-female_greeble = visual.ImageStim(window, image=image_directory + 'f1~11-v1.tif',units='pix',size=[screen_size[0]/4],colorSpace='dkl', color=greeble_color)
-male_greeble = visual.ImageStim(window, image=image_directory + 'm1~11-v1.tif',units='pix',size=[screen_size[0]/4],colorSpace='dkl', color=greeble_color)
+female_greeble = visual.ImageStim(window, image=image_directory + 'f1~11-v1.tif',units='pix',size=[window_size[0]/4],colorSpace='dkl', color=greeble_color)
+male_greeble = visual.ImageStim(window, image=image_directory + 'm1~11-v1.tif',units='pix',size=[window_size[0]/4],colorSpace='dkl', color=greeble_color)
 
 
-fixation_cross = visual.TextStim(win=window,units='pix',text='+', antialias='False',pos=[0,15], colorSpace='dkl', color=dkl_gray, height=screen_size[0]/15)
+fixation_cross = visual.TextStim(win=window,units='pix',text='+', antialias='False',pos=[0,15], colorSpace='dkl', color=dkl_gray, height=window_size[0]/15)
 
 
 cue_list = [female_greeble, male_greeble]
 
 
 #define target coordinates
-left_pos_x = -screen_size[0]/5
-right_pos_x = screen_size[0]/5
+left_pos_x = -window_size[0]/5
+right_pos_x = window_size[0]/5
 
 
 n_reps = n_trials//2
@@ -270,8 +270,8 @@ instruction_phase = True
 while instruction_phase:
     inst_msg.text = instructions_p1
     inst_msg.setAutoDraw(True)
-    female_greeble_sample.setPos([-300, -10])
-    male_greeble_sample.setPos([200, -10])
+    female_greeble_sample.setPos([-200, 0])
+    male_greeble_sample.setPos([200, 0])
     female_greeble_sample.draw()
     male_greeble_sample.draw()
     window.flip()

@@ -13,6 +13,7 @@ show=0, order=[ 'CoAx ID [####]'])
 
 # set data path & collect information from experimenter
 testing = int(input("Testing? "))
+lab_testing = int(input("Testing in the lab? "))
 
 
 if testing is not 1 and testing is not 0:
@@ -214,10 +215,14 @@ rt_min = .1
 
 mandatory_trial_time = 1.5
 
-
-left_key = "2"
-right_key = "1"
-inst_key = left_key
+if lab_testing:
+    left_key = 'f'
+    right_key = 'a'
+    inst_key = 's'
+else:
+    left_key = "2"
+    right_key = "1"
+    inst_key = left_key
 
 escape_key = "escape"
 

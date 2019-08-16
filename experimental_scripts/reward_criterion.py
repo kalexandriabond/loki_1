@@ -13,6 +13,7 @@ show=0, order=[ 'CoAx ID [####]'])
 
 # set data path & collect information from experimenter
 testing = int(input("Testing? "))
+lab_testing = int(input("Testing in the lab? "))
 
 
 if testing is not 1 and testing is not 0:
@@ -27,25 +28,48 @@ run_info_directory = parent_directory + '/data/run_info_data/'
 
 # deterministic_exp_param_directory = os.getcwd() + '/experimental_parameters/deterministic_schedules/'
 
-if testing:
-    subj_id = 0
-    exp_param_file = exp_param_directory + 'test_reward_criterion.csv'
+session_n = 0
 
+if testing:
+    subj_id = 999
 else:
     sub_inf_dlg.show()
     subj_id = int(float(user_input_dict['CoAx ID [####]']))
-    exp_param_file = exp_param_directory + str(subj_id) + '_reward_criterion_9510.csv'
 
-    if not os.path.exists(exp_param_file):
-        sys.exit("Experimental parameter file does not exist.")
+exp_param_file = exp_param_directory + str(subj_id) + '_reward_criterion_9510.csv'
 
-if testing:
-    output_file_name =  'test_reward_criterion' + '_' + str(current_time)
-else:
-    output_file_name = str(subj_id) + '_' + 'reward_criterion' + '_9010_' + str(current_time)
+if not os.path.exists(exp_param_file):
+    sys.exit("Experimental parameter file does not exist.")
+
+subj_directory = data_directory + "sub-" + "{:04d}".format(subj_id) + "/"
+session_directory = subj_directory + "ses-" + "{:02d}".format(session_n) + "/"
+
+behavioral_directory = session_directory + "beh/"
+
+directories = list([behavioral_directory])
+
+for dir in directories:
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
+
+output_file_name = (
+    "sub-"
+    + "{:04d}".format(subj_id)
+    + "_"
+    + "ses"
+    + "{:02d}".format(session_n)
+    + "_"
+    + "task-"
+    + "reward-criterion"
+    + "_"
+    + str(current_time)
+)
+
 
 run_info_path = run_info_directory + output_file_name + "_runInfo.csv"
-output_path = data_directory + output_file_name + "_events.tsv"
+
+output_path = behavioral_directory + output_file_name + ".tsv"
 
 if not testing and os.path.exists(output_path):
     sys.exit(output_file_name + " already exists! Overwrite danger...Exiting.")
@@ -95,7 +119,7 @@ instructions_p2 = ("On each trial you can ask either the male or female greeble 
 "Your goal is simply to make as much money as possible by learning which type of greeble will give you more money. ")
 
 instructions_p3 = ("The total amount of money that you have is shown as a bank at the center of the screen:" + small_vertical_txt_break*7 + "If you earn money, the bank will turn green. " +
-"If you lose money, the bank will turn yellow.\n\nIf you choose too slowly or too quickly, you will lose 5 points and the bank at the center of the screen will turn red.\n Each point you earn will correspond to one real cent that you will be paid in addition to your hourly pay. So do the best you can!")
+"If you lose money, the bank will turn yellow.\n\nIf you choose too slowly or too quickly, you will lose 5 points and the bank at the center of the screen will turn red.\n\nEach point you earn will correspond to one real cent that you will be paid in addition to your hourly pay. So do the best you can!")
 
 
 instructions_p4 = ("To ask the left greeble for money, press the left button with your left thumb. " +
@@ -157,26 +181,34 @@ window = visual.Window(size = screen_size, units='pix', monitor = mon, color = d
        colorSpace = 'dkl', blendMode = 'avg', useFBO = True, allowGUI = \
        False,fullscr=True, pos=center, screen=0)
 
-break_msg = visual.TextStim(win=window, units='pix',antialias='False', text=between_run_inst, wrapWidth=screen_size[0]-400, height=screen_size[1]/32)
-inst_msg = visual.TextStim(win=window, units='pix',antialias='False',colorSpace='dkl', color=[90,0,1], wrapWidth=screen_size[0]-400, height=screen_size[1]/32)
-end_msg = visual.TextStim(win=window, units='pix', antialias='False', wrapWidth=screen_size[0]-400,colorSpace='dkl', color=[90,0,1], height=screen_size[1]/32)
-speed_msg = visual.TextStim(win=window, units='pix',antialias='False', text=slow_trial,  wrapWidth=screen_size[0]-400, height=screen_size[1]/15,
+break_msg = visual.TextStim(win=window, units='pix',antialias='False', text=between_run_inst, wrapWidth=window_size[0]-400, height=window_size[1]/32)
+inst_msg = visual.TextStim(win=window, units='pix',antialias='False',colorSpace='dkl', color=[90,0,1], wrapWidth=window_size[0]-400, height=window_size[1]/32)
+end_msg = visual.TextStim(win=window, units='pix', antialias='False', wrapWidth=window_size[0]-400,colorSpace='dkl', color=[90,0,1], height=window_size[1]/32)
+speed_msg = visual.TextStim(win=window, units='pix',antialias='False', text=slow_trial,  wrapWidth=window_size[0]-400, height=window_size[1]/15,
 alignHoriz='center', colorSpace='rgb',color=[1,-1,-1], bold=True)
 
 
-bank_sample = visual.ImageStim(window, image=image_directory+'bank_sample.png',units='pix',size=None,colorSpace='rgb')
-
-
 #m/f from different families to emphasize dimension of interest (sex)
-female_greeble_sample = visual.ImageStim(window, image=image_directory + 'symm_greebles/' + 'f1~11-v1.tif',units='pix',size=[screen_size[0]/5], colorSpace='dkl', color=greeble_color)
-male_greeble_sample = visual.ImageStim(window, image=image_directory + 'symm_greebles/' + 'm2~21-v1.tif',units='pix',size=[screen_size[0]/5], colorSpace='dkl', color=greeble_color)
+female_greeble_sample = visual.ImageStim(window, image=image_directory + 'symm_greebles/' + 'f1~11-v1.tif',units='pix',size=[window_size[0]/5], colorSpace='dkl', color=greeble_color)
+male_greeble_sample = visual.ImageStim(window, image=image_directory + 'symm_greebles/' + 'm2~21-v1.tif',units='pix',size=[window_size[0]/5], colorSpace='dkl', color=greeble_color)
 
 #take in an image list
-female_greeble = visual.ImageStim(window, image=image_directory + 'symm_greebles/' + 'f1~11-v1.tif',units='pix',size=[screen_size[0]/4],colorSpace='dkl', color=greeble_color)
-male_greeble = visual.ImageStim(window, image=image_directory + 'symm_greebles/' +'m1~11-v1.tif',units='pix',size=[screen_size[0]/4],colorSpace='dkl', color=greeble_color)
+female_greeble = visual.ImageStim(window, image=image_directory + 'symm_greebles/' + 'f1~11-v1.tif',units='pix',size=[window_size[0]/4],colorSpace='dkl', color=greeble_color)
+male_greeble = visual.ImageStim(window, image=image_directory + 'symm_greebles/' +'m1~11-v1.tif',units='pix',size=[window_size[0]/4],colorSpace='dkl', color=greeble_color)
 
 runtimeInfo = info.RunTimeInfo(author='kb',win=window,userProcsDetailed=False, verbose=True)
-fixation_point_reward_total = visual.TextStim(win=window,units='pix',antialias='False',pos=[0,15], colorSpace='dkl', color=dkl_gray,height=screen_size[0]/20)
+fixation_point_reward_total = visual.TextStim(win=window,units='pix',antialias='False',pos=[0,15], colorSpace='dkl', color=dkl_gray,height=window_size[0]/20)
+
+
+fixation_point_reward_total = visual.TextStim(
+    win=window,
+    units="pix",
+    antialias="False",
+    pos=[0, 15],
+    colorSpace="dkl",
+    color=dkl_gray,
+    height=window_size[0] / 20,
+)
 
 cost_per_decision = -1
 
@@ -187,8 +219,8 @@ low_val_cue = []
 high_p_cue = []
 
 #define target coordinates
-left_pos_x = -screen_size[0]/5
-right_pos_x = screen_size[0]/5
+left_pos_x = -window_size[0]/5
+right_pos_x = window_size[0]/5
 
 
 n_reps = n_trials//2
@@ -206,10 +238,14 @@ rt_min = .1
 
 mandatory_trial_time = 1.5
 
-
-left_key = "2"
-right_key = "1"
-inst_key = left_key
+if lab_testing:
+    left_key = 'f'
+    right_key = 'a'
+    inst_key = 's'
+else:
+    left_key = "2"
+    right_key = "1"
+    inst_key = left_key
 
 escape_key = "escape"
 
@@ -256,8 +292,8 @@ instruction_phase = True
 while instruction_phase:
     inst_msg.text = instructions_p1
     inst_msg.setAutoDraw(True)
-    female_greeble_sample.setPos([-300, -10])
-    male_greeble_sample.setPos([200, -10])
+    female_greeble_sample.setPos([-200, 0])
+    male_greeble_sample.setPos([200, 0])
     female_greeble_sample.draw()
     male_greeble_sample.draw()
     window.flip()
@@ -271,15 +307,18 @@ while instruction_phase:
     if escape_key in inst_keys_p2:
         sys.exit('escape key pressed.')
 
-
     inst_msg.text = instructions_p3
-    bank_sample.setPos([-80, 70])
-    bank_sample.draw()
+    female_greeble_sample.setPos([-200, 75])
+    male_greeble_sample.setPos([200, 75])
+    female_greeble_sample.draw()
+    male_greeble_sample.draw()
+    fixation_point_reward_total.text = str(total_reward)
+    fixation_point_reward_total.setPos([0, 75])
+    fixation_point_reward_total.draw()
     window.flip()
     inst_keys_p3 = event.waitKeys(keyList=[inst_key,escape_key])
     if escape_key in inst_keys_p3:
         sys.exit('escape key pressed.')
-
 
     inst_msg.text = instructions_p4
     window.flip()

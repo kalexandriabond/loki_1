@@ -1,5 +1,6 @@
 #Specific files
 .ipynb_checkpoints/
+analysis/fw_scripts/ 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

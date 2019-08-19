@@ -26,5 +26,9 @@ If not Testing, enter '0'. Then enter the subject ID, session number and run num
 If the experiment is discontinued for some reason, you can start from any run.
 
 
+Funtional localizer:
+Open Matlab in the `func_localizer` folder, runs script `FFALOCPPAEBALocal.m`. 
+Enter subject ID, session number and run number as above. 
 
+There are 2 runs per sessions.
 

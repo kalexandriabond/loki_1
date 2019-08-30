@@ -3,12 +3,12 @@
 @ariaaay @kmbond
 
 1) ~~verify that training and test sets of greebles are separated and consistent across our experiments (again, to be sure)~~
-2) run through each of our tasks to make sure nothing conflicts with the other (?) {seems fine}
+~~2) run through each of our tasks to make sure nothing conflicts with the other (?) {seems fine}~~
 3) make sure that there are the same visuals (window size, greeble size, luminance/contrast issues). {create a dict for the luminance and contrast values as a separate config file} 
 4) ~~collate current subject list (IDs)~~
-5) recruit remainder of subjects (3)
+~~5) recruit remainder of subjects (3)~~
 6) ~~method for coordinating the scheduling of sessions {shared google calendar, can just use calpendo}~~
-7) test physio. data collection
+~~7) test physio. data collection~~
 8) ~~settle on a numbering convention for sessions (perceptual session is 1? my RL sessions being 2-10, last perc. session is 11?) {one-based indexing}~~
 9) ~~develop a procedure for the overall experiment (when to do the criterion tasks, when to do the perceptual tasks, etc.) {update old nb}~~
 _ _ _
@@ -27,6 +27,7 @@ _ _ _
 + phase encoding issue with flywheel (error). collected both encoding versions. 
 + ~~make sure that the events file has the same formatting as the BIDS stuff on flywheel~~ 
 + BIDS conversion is manual, not automated. so after data collection, write a script to implement BIDS structure.
++ PUSH the events file to flywheel before BIDS conversion. 
 + ~~make abs. sure trigger is 5~~
 + ~~makes sure lum script is functioning properly~~  
 + generate the reward files for the new subjects (790 + 811) 

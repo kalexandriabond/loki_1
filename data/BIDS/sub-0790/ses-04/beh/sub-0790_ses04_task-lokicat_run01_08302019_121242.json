@@ -1,0 +1,1 @@
+trial, subj_id, reward_code, condition, run, LR_choice, value_accuracy, value_LR_solution, reward,cumulative_reward, rt, total_trial_time, iti, cp_list, obs_cp_list,high_val_cue,high_p_cue, p_accuracy, p_LR_solution, p_id_solution, id_choice, stim_duration,stim_onset, stim_offset, abs_response_time, epoch_length, epoch_trial,epoch_number

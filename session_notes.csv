@@ -4,4 +4,4 @@ coax_id,date,session_number,session_code,notes,
 790,8/13/19,2,CLR / reward code 6 (8510),"decided to renumber the sessions on scanner in absolute terms -- starting with 2 for RL sessions. need to fix the pos. of greebles on inst. screen for perceptual criterion task. Did not dim the lights. First run was a bit rough behaviorally speaking but vast improvement on runs 2-5. luminance data were collected during the shim/anat scout for this session.",
 790,8/16/19,3,CLR / reward code 3 (7510),"did the luminance range test after the shim. Representation of pupil looked a bit shaky for this session during the calibration and validation procedure. Losing the pupil during the third run. Eyetracker was moved yesterday (8/15/19) and data quality is suffering.",
 790,8/30/19,4,CLR / reward code 4 (7520),"things seem to go well.",
-
+790, 9/3/19,7,CLR / reward code 7 (8520), ""

@@ -244,7 +244,7 @@ while run_n < 7:
     stim_offset_list = []
     stimulus_duration_list = []
     trial_onset_list = []
-    abs_response_time_list = []
+    # abs_response_time_list = []
     trial_time = []
     level_list = []
     level_label_duration_list = []
@@ -281,7 +281,7 @@ while run_n < 7:
     if testing:
         n_trials = n_test_trials
 
-    trial_list = list(np.arange(0, n_trials))
+    # trial_list = list(np.arange(0, n_trials))
 
     # give instructions
     instruction_phase = True
@@ -333,6 +333,10 @@ while run_n < 7:
         "level_label_duration, rt, choice"
     )
 
+    events_header = (
+        "stim_onset, stim_duration, stim_greebles, trial_num, trial_type, rt, choice"
+    )
+
     t = 0
     # present choices
     while t < n_trials:
@@ -349,8 +353,8 @@ while run_n < 7:
         level_msg.setAutoDraw(True)
         window.flip()
 
-        level_onset_time = expTime_clock.getTime()
-        level_onset_list.append(level_onset_time)
+        # level_onset_time = expTime_clock.getTime()
+        # level_onset_list.append(level_onset_time)
 
         core.wait(5)
 
@@ -359,9 +363,9 @@ while run_n < 7:
 
         window.flip()
 
-        level_offset_time = expTime_clock.getTime()
-        level_offset_list.append(level_offset_time)
-        level_label_duration_list.append(level_offset_time - level_onset_time)
+        # level_offset_time = expTime_clock.getTime()
+        # level_offset_list.append(level_offset_time)
+        # level_label_duration_list.append(level_offset_time - level_onset_time)
 
         core.wait(5)
 
@@ -384,6 +388,8 @@ while run_n < 7:
         stim_offset_time = expTime_clock.getTime()
         stim_offset_list.append(stim_offset_time)
         stimulus_duration_list.append(stim_offset_time - stim_onset_time)
+        rt_list.append(np.nan)
+        LR_choice_list.append(np.nan)
 
         core.wait(8)
 
@@ -393,6 +399,7 @@ while run_n < 7:
             fixation_cross.setAutoDraw(False)
             greeble.setImage(image_directory + param[t, i + 3])
             stim_list.append(image_directory + param[t, i + 3])
+            level_list.append(param[t, 1])
 
             greeble.setAutoDraw(True)
             window.flip()
@@ -404,8 +411,8 @@ while run_n < 7:
                 keyList=[left_key, right_key, escape_key], clearEvents=True, maxWait=10
             )
 
-            abs_response_time = expTime_clock.getTime()
-            abs_response_time_list.append(abs_response_time)
+            # abs_response_time = expTime_clock.getTime()
+            # abs_response_time_list.append(abs_response_time)
 
             if response is None:
                 rt = np.nan  # no response
@@ -455,10 +462,10 @@ while run_n < 7:
                     stim_onset_list,
                     stimulus_duration_list,
                     stim_list,
-                    trial_list,
+                    # trial_list,
                     level_list,
-                    level_onset_list,
-                    level_label_duration_list,
+                    # level_onset_list,
+                    # level_label_duration_list,
                     rt_list,
                     LR_choice_list,
                 )

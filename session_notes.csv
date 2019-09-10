@@ -6,4 +6,4 @@ coax_id,date,session_number,session_code,notes,
 790,8/30/19,4,CLR / reward code 4 (7520),"things seem to go well.",
 790,9/3/19,5,CLR / reward code 7 (8520), "may need to move mirror if we can't capture the pupil. had to do that for this session. this time we moved it up farther. scott used wrong mirror (not infrared coated) so we had to start over. remind scott to use eyetracking mirror for each session. check that respiration, pulse ox, and ekg are being collected as well. went over the allotted time but previous session ran over.",
 790,9/6/19,6,CLR / reward code 0 (6510), "eyetracking seemed especially stable today. May have messed up the trigger detection because shifted focus to the terminal window when teaching cristy. Triggers started to display in the terminal (4x). This was on run 4.",
-790,9/10/19,7,CLR / reward code 1 (6520), "",
+790,9/10/19,7,CLR / reward code 1 (6520), "performance potentially wanes starting at run 4"

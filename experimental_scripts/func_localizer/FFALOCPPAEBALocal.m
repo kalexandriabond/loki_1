@@ -7,7 +7,7 @@ Screen('Preference', 'SkipSyncTests', 1)
 %%%  11/17/09: Wrote it. (JP)
 %%%  2/23/11: Modified from FFALocal.m (JP)
 %%%  8/4/11: Changed houses to Scenes. (JP)  
-%%%  2/24/12: Modified output/bg color (DM)
+%%%  2/24/12: Modified out2put/bg color (DM)
 %%%  6/27/12: Modified fixation at start and filename. Added EBA. General
 %%%  updates.
 %%%  7/21/17: Updated to System76 keycode and fixed cap issues. (JP)
@@ -23,7 +23,6 @@ prompt={'CoAx ID (e.g. 0999)', 'TR Length (in ms)', 'At Scanner? Yes=1, No=0', .
 def={'','2000','1','1','', ''};
 title='SETUP FFA/LOC/PPA/EBA LOCALIZER...';
 lineNo=1;
-   12
 answer=inputdlg(prompt,title,lineNo,def);
 SubjID = char(answer(1,:));
 TRtime = str2num(char(answer(2,:)));

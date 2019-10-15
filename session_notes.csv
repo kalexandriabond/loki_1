@@ -10,4 +10,6 @@ coax_id,date,session_number,session_code,notes,
 790,9/24/19,8,CLR / reward code 2 (6530), "subject seems tired, eyes are droopy. may affect the eye data. we scheduled this session in the morning, which was unusual but we were pressed for time.",
 790,9/24/19,9,CLR / reward code 5 (7530), "all goes well. blink rate is high for run 4.",
 790,9/25/19,10,CLR / reward code 8 (8530), "all goes well!",
+813,10/XX/19,1,CLR / F, "",
+813,10/15/19,2,CLR / reward code 8 (8530), "",
 

@@ -56,3 +56,4 @@ At the end of the session, ask Scott if everything needs to be shut down.
 **Make sure that the mouse is on the BOLD screen for trigger detection and response collection.**
 
 **Make sure that all coils are plugged in and that they are well-situated. Double-check the console screen to see if ALL elements are on. Coil elements should be H1-7.**
+**Need to rescout every time that you go in.** 

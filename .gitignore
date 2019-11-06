@@ -2,6 +2,7 @@
 .ipynb_checkpoints/
 analysis/fw_scripts/ 
 *.EDF #ignore pupil data, too large 
+.DS_store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

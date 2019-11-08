@@ -307,7 +307,7 @@ for block = 1:NumBlocks
        
         %% Wait for Button Press %%
         while (GetSecs < StimEndTime)
-          if sum(double(keyCodes(key1:key2)))==0
+          if sum(double(keyCodes(key1)))==0
                 [keyPressed, secs, keyCodes] = KbCheck;
           end
         end
@@ -318,7 +318,7 @@ for block = 1:NumBlocks
         
         %% Wait for Button Press %%
         while (GetSecs < StimEndTime)
-          if sum(double(keyCodes(key1:key2)))==0
+          if sum(double(keyCodes(key1)))==0
                 [keyPressed, secs, keyCodes] = KbCheck;
           end
         end

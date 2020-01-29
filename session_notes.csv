@@ -11,7 +11,7 @@ coax_id,date,session_number,session_code,notes,
 790,9/24/19,9,CLR / reward code 5 (7530), "all goes well. blink rate is high for run 4.",
 790,9/25/19,10,CLR / reward code 8 (8530), "all goes well!",
 790,9/26/19,11,F, "No button press recorded for both functional localizers runs",
-813,10/1/19,1,F, "No button press recorded for both functional localizers runs, subject went to bathroom in the middle of the scan."
+813,10/1/19,1,F, "No button press recorded for both functional localizers runs, subject went to bathroom in the middle of the scan.",
 813,10/15/19,2,CLR / reward code 8 (8530), "forgot to ask part. to remove eye makeup. however, eyetracking still seems fine. did fairly poorly at the onset of run 1 with lots of blinking. maybe nerves. perf. on run 2 was marginally better. run 3 was even better. thinking that it was a matter of relaxing / getting accustomed to the task.",
 813,10/17/19,3,CLR / reward code 2 (6530), "physio was reset to legacy? scott reset to dicoms. will check next time as well.",
 813,10/23/19,4,CLR / reward code 6 (8510), "bold screen display wasn't working, but got to work eventually. no clear reason why. just power cycled a few times. wraparound artifact for run 1? scanning parameters should not have changed, field of view is the same. ? john may have changed something. coil was messed up -- john said that the anterior coil was not plugged in... useless data due to quality. not sure i can recollect this session due to learning effects. coil element selection may also be copied, in addition to the slice prescription. Note that we will repeat this session, provided that SNR is sufficiently low, *after* the perceptual learning test (ses 11).",

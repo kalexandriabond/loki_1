@@ -15,7 +15,7 @@ show=0, order=[ 'CoAx ID [####]','Session Number [#]'])
 
 # set data path & collect information from experimenter
 testing = int(input("Testing? "))
-lab_testing = int(input("Testing in the lab? "))
+lab_testing = int(input("Testing in the lab or initial criterion testing? "))
 
 if testing is not 1 and testing is not 0:
     sys.exit('Enter 0 or 1.')

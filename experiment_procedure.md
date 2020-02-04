@@ -9,8 +9,9 @@
 
 1) Sex discrimination criterion (perform until .95 accurate)
 2) Reinforcement learning criterion task (perform until .80 accurate)
-3) Eye-tracking criterion (are their eyes trackable?)
-4) If they pass the criterion tasks, then scan their heads and order a headcase.
+3) If they pass the criterion tasks, then scan their heads and order a headcase.
+4) Schedule a time to test the headcase fit with the 64-channel coil. At the time of testing headcase fit, check for issues with eye-tracking. Remind subject not to wear eye makeup for this test. 
+
 
 **Enter experiment**
 

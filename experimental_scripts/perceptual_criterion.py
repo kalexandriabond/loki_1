@@ -15,7 +15,7 @@ show=0, order=[ 'CoAx ID [####]','Session Number [#]'])
 
 # set data path & collect information from experimenter
 testing = int(input("Testing? "))
-lab_testing = int(input("Testing in the lab? "))
+lab_testing = int(input("Testing in the lab or initial criterion testing? "))
 
 if testing is not 1 and testing is not 0:
     sys.exit('Enter 0 or 1.')
@@ -167,7 +167,7 @@ speed_message_color = dkl_red
 
 window = visual.Window(size = screen_size, units='pix', monitor = mon, color = dkl_blue, \
        colorSpace = 'dkl', blendMode = 'avg', useFBO = True, allowGUI = \
-       False, fullscr=False, pos=center, screen=1)
+       False, fullscr=True, pos=center, screen=1)
 
 inst_msg = visual.TextStim(win=window, units='pix',antialias='False',colorSpace='rgb', color=inst_color, wrapWidth=window_size[0]-400, height=window_size[1]/32)
 end_msg = visual.TextStim(win=window, units='pix', antialias='False', wrapWidth=window_size[0]-400,colorSpace='rgb', color=inst_color, height=window_size[1]/32)
@@ -226,11 +226,10 @@ response_failure_reward = -5
 if lab_testing:
     left_key = 'f'
     right_key = 'a'
-    inst_key = 's'
 else:
     left_key = "2"
     right_key = "1"
-    inst_key = left_key
+inst_key = left_key
 
 
 escape_key = "escape"

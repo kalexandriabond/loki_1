@@ -1,4 +1,4 @@
-stim_onset, stim_duration, stim_greebles, trial_num, trial_type, rt, choice
+onset	duration	stim_greebles	trial_num	trial_type	rt	choice
 10.0652658939	2.01658701897	/Users/coax_lab/Desktop/loki_1/images/symm_greebles/f1~14-v1.tif	Sex	nan	nan
 20.0970029831	0.549582004547	/Users/coax_lab/Desktop/loki_1/images/symm_greebles/m2~21-v1.tif	Sex	0.535292863846	76
 30.1118328571	0.436439990997	/Users/coax_lab/Desktop/loki_1/images/symm_greebles/f5~55-v1.tif	Sex	0.43202996254	76

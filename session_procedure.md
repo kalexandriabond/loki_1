@@ -11,6 +11,7 @@ before entering scanner:
 inside scanner: 
 
 `python luminance_range.py`
+
 `python greeblified_decisions_loki1.py` x 5 runs with calibration and validation at beginning of each run
 
   * calibrate (c) 

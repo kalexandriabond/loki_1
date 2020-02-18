@@ -1,12 +1,18 @@
-login to coax lab mac
 
-`source activate psypy2.7`
 
-before entering scanner: 
+before entering scanner on laptop: 
+
+`conda activate psychopy`
+
+`cd ~/Desktop/loki_1/experimental_scripts/`
 
 `python perceptual_criterion.py`
 
 `python reward_criterion.py`
+
+login to coax lab mac
+
+`source activate psypy2.7`
 
 inside scanner: 
 

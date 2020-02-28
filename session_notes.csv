@@ -31,4 +31,4 @@ coax_id,date,session_number,session_code,notes,
 811, 02/18/20, 5, CLR / reward code 3 (7510), "the subject number was not edited properly on the scanning console. asking flywheel how to edit. perceptual learning criterion didn't save for this session, but was completed in a reasonable amount of time."
 811, 02/24/20, 6, CLR / reward code 0 (6510), "lost ecg signal. need to use additional medical tape for the electrodes."
 811, 02/25/20, 7, CLR / reward code 8 (8530), "subject's eye was a bit droopy during run 4."
-
+811, 02/28/20, 8, CLR / reward code 6 (8510), ""

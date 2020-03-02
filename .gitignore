@@ -1,6 +1,7 @@
 #Specific files
 .ipynb_checkpoints/
-analysis/fw_scripts/ 
+analysis/fw_scripts/
+data/BIDS/*/*/func-old/
 #*.EDF #ignore pupil data, too large 
 .DS_store
 

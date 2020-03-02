@@ -62,7 +62,11 @@ if args.run != "all":
     acc = calculate_accuracy(responses[0], responses[1], responses[2])
     print(acc)
 else:
+    acc_all = list()
     for run in range(6):
         responses = load_response(args.subject_id, args.session, run+1)
         acc = calculate_accuracy(responses[0], responses[1], responses[2])
+        acc_all.append(acc)
         print(acc)
+
+    print("Average accuracy is: " + str(sum(acc_all)/len(acc_all)))

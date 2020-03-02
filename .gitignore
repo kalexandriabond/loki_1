@@ -5,7 +5,7 @@ data/BIDS/*/*/func-old/
 
 
 #*.EDF #ignore pupil data, too large 
-**/.DS_Store
+*.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

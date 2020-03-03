@@ -32,5 +32,5 @@ coax_id,date,session_number,session_code,notes,
 811, 02/24/20, 6, CLR / reward code 0 (6510), "lost ecg signal. need to use additional medical tape for the electrodes."
 811, 02/25/20, 7, CLR / reward code 8 (8530), "subject's eye was a bit droopy during run 4."
 811, 02/28/20, 8, CLR / reward code 6 (8510), "all goes well."
-811, 03/03/20, 9, CLR / reward code 7 (8520), ""
+811, 03/03/20, 9, CLR / reward code 7 (8520), "the eye is droopy during run 2."
 

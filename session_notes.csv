@@ -34,4 +34,5 @@ coax_id,date,session_number,session_code,notes,
 811, 02/28/20, 8, CLR / reward code 6 (8510), "all goes well."
 811, 03/03/20, 9, CLR / reward code 7 (8520), "the eye is droopy during run 2."
 811, 03/06/20, 10, CLR / reward code 2 (6530), ""
+811, 03/09/20, 11, F, "Fire alarm of Mellon was activated after Run 1. Run 1 data was recollected". Behaviral data of original run 1 is renamed to run 0. 
 

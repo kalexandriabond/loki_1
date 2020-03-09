@@ -3,7 +3,7 @@ Screen('Preference', 'SkipSyncTests', 1)
 %%%   FFA/LOC/PPA LOCALIZER: FFALOCLocal     %%%
 %%%                                          %%%   
 %%%     modified from localizers from AN & JP%%%
-%%%                                          %%%
+%%%                          2                %%%
 %%%  11/17/09: Wrote it. (JP)
 %%%  2/23/11: Modified from FFALocal.m (JP)
 %%%  8/4/11: Changed houses to Scenes. (JP)  

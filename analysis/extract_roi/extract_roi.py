@@ -5,6 +5,7 @@ import os
 #os.system('pip install numpy == 1.17.0')
 #os.system('pip install nilearn')
 #os.system('pip install nipy')
+#os.system('pip install pathlib2')
 
 from src import MaskExtract
 
@@ -13,10 +14,12 @@ subject = '811'
 
 ## Define files/paths to pass to this object
 
+home = os.path.expanduser('~') # get home dir
+
 #Fmriprep path
-fmriprep_path = '/home/raghav/loki1/output/'
-# T1
-anat_img = os.path.join(fmriprep_path,'sub-' + str(subject) + '/fmriprep/sub-' + str(subject) + '/anat/sub-' + str(subject) + '_desc-preproc_T1w.nii.gz') 
+fmriprep_path = os.path.join(home, 'loki1/output/')
+# get t1-weighted image
+anat_img = os.path.join(fmriprep_path,'sub-' + str(subject) + '/fmriprep/sub-' + str(subject) + '/anat/sub-' + str(subject) + '_desc-preproc_T1w.nii.gz')
 # Output directory where dump all the outpus
 output_dir = 'loki1/loki_mask_extract/extract/sub-' + str(subject)
 
@@ -41,7 +44,7 @@ putamen_extract.process()
 caudate_idxs = [11, 50]
 name_roi = 'caudate'
 
-caudate_extract = MaskExtract(anat_file = anat_img, 
+caudate_extract = MaskExtract(anat_file = anat_img,
                               output_dir = output_dir,
                               index = caudate_idxs,
                               name=name_roi,

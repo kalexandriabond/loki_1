@@ -2,7 +2,7 @@
 .ipynb_checkpoints/
 analysis/fw_scripts/
 data/BIDS/*/*/func-old/
-analysis/extract_roi/output_preproc
+analysis/extract_roi/output_preproc/
 
 
 #*.EDF #ignore pupil data, too large 

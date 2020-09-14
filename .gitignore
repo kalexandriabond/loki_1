@@ -2,7 +2,7 @@
 .ipynb_checkpoints/
 analysis/fw_scripts/
 data/BIDS/*/*/func-old/
-
+data/BOLD/
 
 #*.EDF #ignore pupil data, too large 
 *.DS_Store

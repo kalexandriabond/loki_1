@@ -36,5 +36,5 @@ coax_id,date,session_number,session_code,notes,
 811, 03/06/20, 10, CLR / reward code 2 (6530), "",
 811, 03/09/20, 11, F, "Fire alarm of Mellon was activated after Run 1. Run 1 data was recollected. Behaviral data of original run 1 is renamed to run 0.",
 860, X, 1, F, "",
-860, 10/19/20, 2, CLR / reward code 1 (6520), "",
+860, 10/20/20, 2, CLR / reward code 1 (6520), "",
 

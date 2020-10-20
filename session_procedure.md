@@ -10,6 +10,8 @@ before entering scanner on laptop:
 
 `python reward_criterion.py`
 
+**Ask participant to use extra medical tape. EKG signal will dropout otherwise.** 
+
 login to coax lab mac
 
 `source activate psypy2.7`

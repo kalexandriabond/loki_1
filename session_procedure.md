@@ -32,6 +32,9 @@ after end of session:
 
 `git push`
 
+check for physio + BOLD + structural data on flywheel 
+check that behavioral data is uploaded to repo and complete
+
 at end of each week of sessions:
 
 ask participant to complete w9 and human subject pay form 

@@ -36,5 +36,5 @@ coax_id,date,session_number,session_code,notes,
 811, 03/06/20, 10, CLR / reward code 2 (6530), "",
 811, 03/09/20, 11, F, "Fire alarm of Mellon was activated after Run 1. Run 1 data was recollected. Behaviral data of original run 1 is renamed to run 0.",
 860, X, 1, F, "",
-860, 10/20/20, 2, CLR / reward code 8 (8530), "Headcase blocked eye completely. Disregard eyetracking data. Need sub. to come in early next time to test fit + eyetrackability. ",
+860, 10/20/20, 2, CLR / reward code 8 (8530), "Headcase blocked eye completely. Disregard eyetracking data. Need sub. to come in early next time to test fit + eyetrackability. Lost EKG signal during run 3. Ask participant to use extra medical tape next time to prevent this. ",
 

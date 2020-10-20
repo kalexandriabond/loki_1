@@ -32,7 +32,7 @@ after end of session:
 
 `git push`
 
-check for physio + BOLD + structural data on flywheel 
+check for physio + BOLD + structural data on [flywheel](https://bridge-center.flywheel.io/#/login) 
 
 check that behavioral data is uploaded to this repo and complete
 

@@ -40,7 +40,7 @@ transfer a copy of EDF data to lab Dropbox
 
 at end of each week of sessions:
 
-* calculate earnings for the week
+* calculate earnings for the week and update [lab payment record](https://docs.google.com/spreadsheets/d/11m9hg-KEXn1QQvynQl8Gkf-oTHfsS2UBmgzRibMJXZU/edit#gid=0)
 * ask participant to complete:
 w9 + HSRP form + electronic funds transfer form
 * email forms with IRB approval letter to Tisha

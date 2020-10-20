@@ -33,7 +33,10 @@ after end of session:
 `git push`
 
 check for physio + BOLD + structural data on flywheel 
-check that behavioral data is uploaded to repo and complete
+
+check that behavioral data is uploaded to this repo and complete
+
+transfer a copy of EDF data to lab Dropbox
 
 at end of each week of sessions:
 

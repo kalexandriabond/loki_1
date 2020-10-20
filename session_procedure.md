@@ -37,5 +37,9 @@ check that behavioral data is uploaded to repo and complete
 
 at end of each week of sessions:
 
-ask participant to complete w9 and human subject pay form 
-submit with IRB approval letter to Tisha
+* calculate earnings for the week. 
+* ask participant to complete:
+w9 + HSRP form + electronic funds transfer form
+* email forms with IRB approval letter to Tisha
+* get email endorsement of forms from participant in lieu of physical signature
+

@@ -13,9 +13,12 @@ If off - push power
 **Behavioral response collection**
 
 1) Ask Scott to plug the Current Designs yellow/blue button cylinders into the fiber optic cable
+
 ~~2) Turn on Current Designs power switch near outlet
 3) Press the selector dial~~
 ~~4) Change modes -- Yes~~
+
+
 2) Use the current designs response box to select the following: 
 3) Autoconfigure 
 4) Select HID_key_12345 

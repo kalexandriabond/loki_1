@@ -23,7 +23,7 @@ If off - push power
        >`HHSC-2X1-CYL`<br>
        >`HID KEY 12345`
 
-**5) Test response output codes with a text editor (2 is left, 1 is right)**
+5) Test response output codes with a text editor (2 is left, 1 is right)
 
 6) double check that scott has given the wand labeled 'left' to the left hand, same for right. 
 

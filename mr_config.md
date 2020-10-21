@@ -2,7 +2,7 @@
 
 1) Make sure BOLD AVI is on. (hold button down for 3 s to turn off and then press again to turn on if you need to power cycle)
 If off - push power
-2) Unplug cable labeled “Laptop” and replace with cable labeled “CoAx Lab Mac”
+2) Unplug cable labeled “Laptop” and replace with cable labeled “BRIDGE Mac”
 3) Select “Laptop” button on BOLD AV
 4) Turn the Mac mini on
 5) Select 5 for the kvm system. May need to wait for the BOLD screen to warm up. If the BOLD screen is flashing, power cycle. 
@@ -24,6 +24,7 @@ If off - push power
        >`HID KEY 12345`
 
 **5) Test response output codes with a text editor (2 is left, 1 is right)**
+
 6) double check that scott has given the wand labeled 'left' to the left hand, same for right. 
 
 **Eyetracking**

@@ -38,6 +38,8 @@ check that behavioral data is uploaded to this repo and complete
 
 transfer a copy of EDF data to lab Dropbox
 
+run MRI QC
+
 at end of each week of sessions:
 
 * calculate earnings for the week and update [lab payment record](https://docs.google.com/spreadsheets/d/11m9hg-KEXn1QQvynQl8Gkf-oTHfsS2UBmgzRibMJXZU/edit#gid=0)

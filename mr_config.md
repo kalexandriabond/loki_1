@@ -13,16 +13,18 @@ If off - push power
 **Behavioral response collection**
 
 1) Ask Scott to plug the Current Designs yellow/blue button cylinders into the fiber optic cable
-2) Turn on Current Designs power switch near outlet
-3) Press the selector dial
-4) Change modes -- Yes
-5) Autoconfigure 
-6) Select HID_key_12345 
+~~2) Turn on Current Designs power switch near outlet
+3) Press the selector dial~~
+~~4) Change modes -- Yes~~
+2) Use the current designs response box to select the following: 
+3) Autoconfigure 
+4) Select HID_key_12345 
     * Should Display:
        >`HHSC-2X1-CYL`<br>
        >`HID KEY 12345`
-**7) Test response output codes with a text editor (2 is left, 1 is right)**
-8) double check that scott has given the wand labeled 'left' to the left hand, same for right. 
+
+**5) Test response output codes with a text editor (2 is left, 1 is right)**
+6) double check that scott has given the wand labeled 'left' to the left hand, same for right. 
 
 **Eyetracking**
 
@@ -42,6 +44,8 @@ Replace physio equipment on charger. Make sure it charges.
 Ask the participant to apply the EKG electrodes themselves. Instruct them using the images in the manual: 
 
 ![EKG Image](https://github.com/kmbond/loki_1/blob/master/images/ekg_pos.png)
+
+Make sure that they use medical tape for the electrodes, otherwise we will lose signal.
  
 See p. 91 of the Magnetom operator manual for the placement of the EKG electrodes.  
 
@@ -52,9 +56,8 @@ ___
 
 At the end of the session, ask Scott if everything needs to be shut down.
 
-**For each session, record the position, orientation, and phase encoding direction.**
+**For the second session, record the position, orientation, and phase encoding direction. Set the slice positioning to these coordinates for all other RL sessions.**
 **Make sure that the mouse is on the BOLD screen for trigger detection and response collection.**
 
 **Make sure that all coils are plugged in and that they are well-situated. Double-check the console screen to see if ALL elements are on. Coil elements should be H1-7.**
 **Need to rescout every time that you go in.** 
-**Make sure that participants use medical tape for EKG electrodes**

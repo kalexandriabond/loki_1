@@ -8,8 +8,6 @@ before entering scanner on laptop:
 
 `python perceptual_criterion.py`
 
-`python reward_criterion.py`
-
 **Ask participant to use extra medical tape. EKG signal will dropout otherwise.** 
 
 login to coax lab mac

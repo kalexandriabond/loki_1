@@ -60,7 +60,7 @@ def t1_log(acq, date, subject, session, df):
 def create_log_files(lab, project):
 
 
-    api_key = 'bridge-center.flywheel.io:EnMp3OeZ0By95NuStL'
+    api_key = ''
     fw = flywheel.Client(api_key)
 
     pid = fw.lookup(lab + '/' + project).id

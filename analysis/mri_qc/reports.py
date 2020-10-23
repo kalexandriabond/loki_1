@@ -11,7 +11,7 @@ import flywheel
 def download_qc_reports(lab, project, html_dir):
 
 
-    api_key = 'bridge-center.flywheel.io:EnMp3OeZ0By95NuStL'
+    api_key = ''
     fw = flywheel.Client(api_key)
 
 

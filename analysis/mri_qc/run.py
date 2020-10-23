@@ -3,7 +3,7 @@
 """
 
 This is the main script to
-update the QC info for LOKI1
+update the QC info for LOKI1 & LOKICAT
 
 """
 #import pandas as pd

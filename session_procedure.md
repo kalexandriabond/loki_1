@@ -40,11 +40,13 @@ transfer a copy of EDF data to lab Dropbox
 
 run MRI QC
 
+transfer perceptual criterion data to repo 
+
 at end of each week of sessions:
 
 * calculate earnings for the week and update [lab payment record](https://docs.google.com/spreadsheets/d/11m9hg-KEXn1QQvynQl8Gkf-oTHfsS2UBmgzRibMJXZU/edit#gid=0)
 * ask participant to complete:
 w9 + HSRP form + electronic funds transfer form
 * email forms with IRB approval letter to Tisha
-* get email endorsement of forms from participant in lieu of physical signature
+* get email endorsement of forms from participant & Tim in lieu of physical signature
 

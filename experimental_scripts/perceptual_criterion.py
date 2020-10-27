@@ -224,8 +224,8 @@ response_failure_reward = -5
 
 
 if lab_testing:
-    left_key = 'f'
-    right_key = 'a'
+    left_key = '1'
+    right_key = '2'
 else:
     left_key = "2"
     right_key = "1"

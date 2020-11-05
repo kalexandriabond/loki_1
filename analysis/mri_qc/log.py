@@ -57,7 +57,7 @@ def t1_log(acq, date, subject, session, df):
 
     return df
 
-def create_log_files(lab, project):
+def create_log_files(lab, project, subjects):
 
 
     api_key = ''
@@ -79,8 +79,9 @@ def create_log_files(lab, project):
     acq_labels = []
     #T1:  cnr, fwhm_avg, snr_total, snrd_total
     #BOLD image: dvars_nstd, fd_mean, fwhm_avg, gcor, snr, tsnr
-    for subject in fw.get_project_subjects(project_id=pid):
-        for session in fw.get_subject_sessions(subject.id):
+    # for subject in fw.get_project_subjects(project_id=pid):
+    for subject in subjects:
+        for session in fw.get_subject_sessions(subject):
             for acquisition in fw.get_session_acquisitions(session.id):
                 acq = fw.get_acquisition(acquisition.id)
                 date = acq.created

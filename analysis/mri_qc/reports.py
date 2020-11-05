@@ -8,7 +8,7 @@ Created on Wed Jan 29 13:22:12 2020
 
 import flywheel
 
-def download_qc_reports(lab, project, html_dir):
+def download_qc_reports(lab, project, subjects, html_dir):
 
 
     api_key = ''
@@ -18,8 +18,10 @@ def download_qc_reports(lab, project, html_dir):
     pid = fw.lookup(lab + '/' + project).id
 
 
-    for subject in fw.get_project_subjects(project_id=pid):
-        for session in fw.get_subject_sessions(subject.id):
+    # for subject in fw.get_project_subjects(project_id=pid):
+    for subject in subjects:
+
+        for session in fw.get_subject_sessions(subject):
             for acq in fw.get_session_acquisitions(session.id):
                 mod = ''
                 if 'func-bold_task-lokicat_run-' in acq.label:
@@ -33,12 +35,12 @@ def download_qc_reports(lab, project, html_dir):
                 if mod:
                     for file in acq.files:
                         if (file.type == 'qa') & (file.name.endswith('.html')):
-                            output_dir = html_dir.joinpath('sub-' + subject.label,
+                            output_dir = html_dir.joinpath('sub-' + subject,
                                                            session.label)
                             output_dir.mkdir(parents = True, exist_ok=True)
 
                             print("Downloading html report for subject {}, "
-                                  "session {} and modality {}".format(subject.label,
+                                  "session {} and modality {}".format(subject,
                                                                       session.label,
                                                                       mod)
                                   )

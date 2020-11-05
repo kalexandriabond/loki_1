@@ -29,6 +29,11 @@ parser.add_argument('--html',  action='store_true',
                     help = ('whether or not download html reports')
                     )
 
+
+parser.add_argument('--subjects', dest='subjects', action='append',
+                        help = ('list of subs to run QC on')
+                        )
+
 args = parser.parse_args()
 
 
@@ -42,6 +47,12 @@ if 'LOKI1' in project_list:
     lab = 'coax'
 elif 'LOKICAT' in project_list:
     lab = 'mtarrlab'
+
+
+if args.subjects:
+    subjects = args.subjects # # TODO: reformat to be consistent with flywheel notation
+else:
+    subjects = [790, 811, 813, 860] # # TODO: reformat to be consistent with flywheel notation
 
 # Set output directory
 if args.output_dir:
@@ -80,13 +91,13 @@ for project in project_list:
     plots_dir = output_dir.joinpath(project, 'plots')
     plots_dir.mkdir(parents = True, exist_ok = True)
 
-    qc_log_dict = create_log_files(lab, project)
+    qc_log_dict = create_log_files(lab, project, subjects)
 
     for mod, log_df in qc_log_dict.items():
 
         out_log_file = logs_dir.joinpath(project + "_" + mod + "_QC.csv")
         # save as csv
-        log_df.to_csv(out_log_file.absolute().as_posix(), index=False) 
+        log_df.to_csv(out_log_file.absolute().as_posix(), index=False)
 
         # Generate the plots
         if mod == 't1':
@@ -110,6 +121,6 @@ for project in project_list:
         htmls_dir = output_dir.joinpath(project, 'htmls')
         htmls_dir.mkdir(parents = True, exist_ok = True)
 
-        finished_download = download_qc_reports(lab, project, htmls_dir)
+        finished_download = download_qc_reports(lab, project, subjects, htmls_dir)
 
         print(finished_download)

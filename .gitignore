@@ -4,7 +4,7 @@ analysis/fw_scripts/
 data/BIDS/*/*/func-old/
 data/BOLD/
 analysis/extract_roi/output_preproc/
-analysis/mri_qc/QC_outputs/*/htmls/*
+analysis/mri_qc/*/htmls/
 
 #*.EDF #ignore pupil data, too large 
 *.DS_Store

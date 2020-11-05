@@ -88,10 +88,10 @@ colors.columns = colors.columns.str.strip()
 
 colors_list = colors.color.tolist()
 
-screen_size = (1920., 1080.)  # screen size in pixels
+screen_size = (1920., 1200.)  # screen size in pixels
 window_size = (1280., 800.)
 mon = monitors.Monitor(
-    "BOLD_display", width=79.7, distance=138,
+    "BOLD_display", width=20.7, distance=56, ## TODO: ADJUST FOR NEW BOLDSCREEN
 )  # width and distance in cm
 mon.setSizePix(screen_size)
 mon.saveMon()

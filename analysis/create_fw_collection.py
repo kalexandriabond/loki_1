@@ -1,6 +1,7 @@
 import flywheel as fw
 import os
 import pandas as pd
+import api_config
 
 fw_instance = fw.Client(os.environ['API_KEY'])
 

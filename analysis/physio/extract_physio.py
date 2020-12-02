@@ -1,5 +1,7 @@
 import flywheel as fw
 import os
+import api_config
+import pandas as pd
 
 fw_instance = fw.Client(os.environ['API_KEY'])
 
@@ -48,6 +50,21 @@ for sub in project.subjects.iter():
             print(f'Job {job_id} submitted for {sub.label} {ses.label} {acq.label}')
             job_list.append(job_id)
 
-# check status of jobs ## TODO: find way to check job status without admin priv.
-# for job in fw_instance.jobs.iter_find('state=failed'):
-#         print('Job: {}, Gear: {}'.format(job.id, job.gear_info.name))
+# check status of jobs
+
+jobs = fw_instance.get_current_user_jobs(gear='extract-cmrr-physio')
+
+job_df = []
+for job in jobs.jobs:
+    d = {
+        'job_id' : job.id,
+        'job_state' : job.state,
+        'job_gear_id': job.gear_id,
+        'job_gear_name' : job.gear_info['name'],
+        'job_gear_vsn' : job.gear_info['version']
+    }
+    job_df.append(d)
+
+job_df = pd.DataFrame(job_df)
+
+job_df.to_csv('~/Desktop/loki_1/analysis/physio/physio_extraction_job_data.csv')

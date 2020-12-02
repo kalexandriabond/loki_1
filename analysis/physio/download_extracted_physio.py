@@ -1,5 +1,6 @@
 import flywheel as fw
 import os
+import api_config
 
 physio_data_path = ('/Users/67981492/Desktop/loki_1/data/physio')
 
@@ -16,4 +17,11 @@ for ses in collection.sessions.iter():
     ses = ses.reload()
     session_n = ses.info['BIDS']['Label']
     subject = ses.info['BIDS']['Subject']
-    ses.download_tar(os.path.join(physio_data_path,'physio_extract_sub' + subject + '_ses' + session_n + '.tar'), include_types=['log'])
+
+    # if ses. # # TODO: check if ses has log files
+    # sessions 3-10 are legacy physio for sub 790
+    try:
+        ses.download_tar(os.path.join(physio_data_path,'physio_extract_sub' + subject + '_ses' + session_n + '.tar'), include_types=['log'])
+    except:
+        print('no logs found.')
+        continue

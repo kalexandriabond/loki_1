@@ -33,7 +33,7 @@
 - The names can be manually changed through flywheel -> information option. Or you can use the scripts in the **modify_acq_flywheel folder** (since for loki1 the study set is limited, manual changes suffice)
 - For changing file names manually, go to information -> BIDS
 	+ Acq - 'epi'
-	+ Modality - 'Magnitude1'/'phasediff'
+	+ Modality - 'magnitude1'/'phasediff'
 	
 - Save and run BIDScuration gear. Refresh page to see the desired changes. If the file is red flagged, the naming is not as per BIDS convention.
 

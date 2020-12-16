@@ -6,7 +6,7 @@ import argparse
 import shutil
 
 #add your api-key
-api_key = "bridge-center.flywheel.io:Y86teOyF7LfgZ2yLb9"
+api_key = 'bridge-center.flywheel.io:EnMp3OeZ0By95NuStL'
 fw = flywheel.Client(api_key)
 
 #Initiate argparse for user input
@@ -43,8 +43,3 @@ while counter <= session_end:
         acquisition.upload_file(f't1/{subject_label}/{file}')
     print (f"files uploaded to session {session_label}")
     counter = counter + 1
-
-
-
-
-

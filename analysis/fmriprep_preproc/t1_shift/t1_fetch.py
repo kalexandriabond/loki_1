@@ -1,15 +1,18 @@
 
+import os
 import flywheel
 from os.path import join as opj
-import os
 import sys
 import argparse
 import shutil
 from pathlib import Path
 
-#add your api-key
-api_key = 'bridge-center.flywheel.io:EnMp3OeZ0By95NuStL'
-fw = flywheel.Client(api_key)
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
+
+from utils import api_config
+
+# log in
+fw = flywheel.Client(os.environ['API_KEY'])
 
 #Initiate argparse for user input
 parser = argparse.ArgumentParser()

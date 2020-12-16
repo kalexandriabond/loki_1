@@ -3,13 +3,15 @@
 This script BIDS-ignores physio files (or other relevant files).
 
 """
+import os
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
 
 import flywheel
 from os.path import join as opj
+from utils import api_config
 
-# Initialise first flywheel client
-api_key = "bridge-center.flywheel.io:Y86teOyF7LfgZ2yLb9"
-fw = flywheel.Client(api_key)
+# log in
+fw = flywheel.Client(os.environ['API_KEY'])
 
 
 

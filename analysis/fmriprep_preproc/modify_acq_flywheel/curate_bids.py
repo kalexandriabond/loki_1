@@ -1,12 +1,15 @@
 
 
-import flywheel as fw
 import os
-import numpy as np
-import time
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
 
-api_key = 'bridge-center.flywheel.io:Y86teOyF7LfgZ2yLb9'
-fw_instance = fw.Client(api_key)
+import flywheel
+import time
+from utils import api_config
+
+# log in
+fw = flywheel.Client(os.environ['API_KEY'])
+
 
 project_label = 'LOKI1'
 project = fw_instance.projects.find_first('label='+project_label)

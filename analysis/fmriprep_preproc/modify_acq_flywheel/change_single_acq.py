@@ -1,15 +1,19 @@
 """
 
-This script changes the phase encoding direction and modality label of 
-the field map inFlywheel to the opposite of that of the BOLD images. 
+This script changes the phase encoding direction and modality label of
+the field map inFlywheel to the opposite of that of the BOLD images.
 
 """
+import os
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
+
 import flywheel
 from os.path import join as opj
+from utils import api_config
 
-# Initialise first flywheel client
-api_key = "bridge-center.flywheel.io:Y86teOyF7LfgZ2yLb9"
-fw = flywheel.Client(api_key)
+# log in
+fw = flywheel.Client(os.environ['API_KEY'])
+
 
 # Define new modality label and phase encoding direction
 new_mod_label = "T1w" #TODO: Maybe this should be magnitude?
@@ -26,7 +30,7 @@ project = fw.lookup((opj(lab, project_label)).replace("\\",'/'))
 subject = fw.lookup((opj(lab, project_label, subject_label)).replace("\\",'/'))
 session = fw.lookup((opj(lab, project_label, subject_label, session_label)).replace("\\",'/'))
 
-# crete and format the query to find acquisition 
+# crete and format the query to find acquisition
 query = (
     'label=~.*t1w.*,'
     'parents.project={0},'
@@ -49,28 +53,27 @@ for acq in acq_list:
             bids_dict = file['info'].get('BIDS')
             # Only do something if BIDS exists on file
             if isinstance(bids_dict, dict):
-                bids_dict['Modality'] = new_mod_label 
+                bids_dict['Modality'] = new_mod_label
                 bids_dict['template'] = 'anat_file'
                 bids_dict['Filename'] = f"sub-{subject_label}_{session_label}_T1w.nii.gz"
-                
+
                 try:
                     bids_dict.pop('Dir')
                 except:
                      print('Dir attributed was already popped. '
                            'Maybe in a previous run?')
-                     
+
                 update_dict['BIDS'] = bids_dict
                 # For flat key-value pairs, no need to copy - just set
                 update_dict['PhaseEncodingDirection'] = 'j'
                 # Uncomment below to actually update
                 acq.update_file_info(file['name'], update_dict)
-                
+
                 print("Nifti info update finished")
-                
+
             else:
                 print('there is no BIDS info for session %s of subject %s '
-                      'in project %s' % (fw.get(acq['parents'].session).label,  
-                                         fw.get(acq['parents'].subject).label, 
+                      'in project %s' % (fw.get(acq['parents'].session).label,
+                                         fw.get(acq['parents'].subject).label,
                                          project_label)
                       )
-                

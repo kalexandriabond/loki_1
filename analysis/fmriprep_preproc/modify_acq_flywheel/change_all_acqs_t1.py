@@ -1,19 +1,22 @@
 """
 
-This script changes the phase encoding direction and modality label 
+This script changes the phase encoding direction and modality label
 for all the field map acquisitions of a certain project in Flywheel.
 
 """
 
+import os
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
+
 import flywheel
 from os.path import join as opj
+from utils import api_config
 
-# Initialise first flywheel client
-api_key = "bridge-center.flywheel.io:Y86teOyF7LfgZ2yLb9"
-fw = flywheel.Client(api_key)
+# log in
+fw = flywheel.Client(os.environ['API_KEY'])
 
 # Define new modality label and phase encoding direction
-new_mod_label = "T1w" 
+new_mod_label = "T1w"
 mew_ph_enc_dir = "j"
 
 # Define project and look them up on the client
@@ -22,10 +25,10 @@ project_label = "LOKI1"
 
 project = fw.lookup((opj(lab, project_label)).replace('\\','/'))
 
-# crete and format the query to find acquisitions 
+# crete and format the query to find acquisitions
 query = (
     'label=~.*t1w.*,'
-    'parents.project={}'    
+    'parents.project={}'
 )
 query = query.format(project.id)
 
@@ -46,21 +49,20 @@ for acq in acq_list:
             bids_dict = file['info'].get('BIDS')
             # Only do something if BIDS exists on file
             if isinstance(bids_dict, dict):
-                bids_dict['Modality'] = new_mod_label 
+                bids_dict['Modality'] = new_mod_label
                 bids_dict['template'] = 'anat_file'
                 bids_dict['Filename'] = f"sub-{subject_label}_{session_label}_T1w.nii.gz"
-                     
+
                 update_dict['BIDS'] = bids_dict
                 # For flat key-value pairs, no need to copy - just set
                 update_dict['PhaseEncodingDirection'] = mew_ph_enc_dir
                 # Uncomment below to actually update
                 acq.update_file_info(file['name'], update_dict)
-                
+
                 print("Nifti info update finished")
             else:
                 print('there is no BIDS info for session %s of subject %s '
-                      'in project %s' % (fw.get(acq['parents'].session).label,  
-                                         fw.get(acq['parents'].subject).label, 
+                      'in project %s' % (fw.get(acq['parents'].session).label,
+                                         fw.get(acq['parents'].subject).label,
                                          project_label)
                       )
-                

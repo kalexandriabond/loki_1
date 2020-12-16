@@ -5,13 +5,16 @@ for all the field map acquisitions of a certain project in Flywheel.
 
 """
 
+import os
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
+
+
 import flywheel
 from os.path import join as opj
+from utils import api_config
 
-# Initialise first flywheel client
-api_key = "bridge-center.flywheel.io:Y86teOyF7LfgZ2yLb9"
-fw = flywheel.Client(api_key)
-
+# log in
+fw = flywheel.Client(os.environ['API_KEY'])
 
 
 # Define project and look them up on the client
@@ -33,8 +36,11 @@ query = query.format(project.id)
 acq_list = fw.acquisitions.find(query)
 
 
+new_phase_encoding_direction = 'j'
+
 # Acq should be epi
-# modality should be either Magnitude1 or phasediff
+# modality should be either magnitude1 or phasediff
+# phase encoding direction should be (j) NOT (j-)
 
 # Iterate over returned acquisitions
 for acq in acq_list:
@@ -44,7 +50,7 @@ for acq in acq_list:
         if file['type'] == 'nifti':
 
             if file['classification']['Intent'][0] == 'Fieldmap':
-                print('modifying the metadata for ' + file['classification']['Intent'][0])
+                print('modifying the metadata for ' + file.info['BIDS']['Filename'])
                 print('session %s of subject %s '
                               'in project %s' % (fw.get(acq['parents'].session).label,
                                                  fw.get(acq['parents'].subject).label,
@@ -70,15 +76,15 @@ for acq in acq_list:
                     elif 'magnitude' in bids_dict['Filename']:
                         print('magnitude fieldmap found')
 
-                        bids_dict['Modality'] = 'Magnitude1'
+                        bids_dict['Modality'] = 'magnitude1'
 
                     update_dict['BIDS'] = bids_dict
                     # For flat key-value pairs, no need to copy - just set
-                    # update_dict['PhaseEncodingDirection'] = mew_ph_enc_dir
-                    # Uncomment below to actually update
+                    update_dict['PhaseEncodingDirection'] = new_phase_encoding_direction
                     acq.update_file_info(file['name'], update_dict)
 
                     print("fieldmap info update finished")
+                    print("updated info", file.info)
                 else:
                     print('there is no BIDS info for session %s of subject %s '
                           'in project %s' % (fw.get(acq['parents'].session).label,

@@ -4,16 +4,15 @@ This script BIDS-ignores tabular data (events, physio).
 
 """
 
+import os
+os.chdir(os.path.join(os.path.expanduser('~'), 'Desktop/loki_1/')) # go to working directory
+
 import flywheel
 from os.path import join as opj
+from utils import api_config
 
+fw = flywheel.Client(os.environ['API_KEY']) # log in
 
-
-import os
-import api_config
-
-# log in
-fw = flywheel.Client(os.environ['API_KEY'])
 
 lab = "coax"
 project_label = "LOKI1"
@@ -28,41 +27,32 @@ query = (
 
 query = query.format(project.id)
 
-# find acquisitions matching query
-acq_list = fw.acquisitions.find(query)
+dicom_files = list()
 
-# iterate over returned acquisitions
-for acq in acq_list:
-    # print(acq.label)
-    # iterate over all files in that acquisition
-    for file in acq.files:
-        # print(file.name, file.type)
-        if file.type == 'dicom':
+acquisitions = fw.acquisitions.find(query) # find acquisitions matching query
 
-            print(file)
 
-            print('modifying the metadata for ')
-            print('session %s of subject %s '
-                          'in project %s' % (fw.get(acq['parents'].session).label,
-                                             fw.get(acq['parents'].subject).label,
-                                             project_label))
+for acq in acquisitions: # iterate over returned acquisitions
 
-            # initialise update dict
-            update_dict = dict()
-            # get subject and session label
-            subject_label = fw.get(acq['parents'].subject).label
-            session_label = fw.get(acq['parents'].session).label
-            # for custom info that is hierarchical, we must copy
-            bids_dict = file['info'].get('BIDS')
-            print('BIDS dict ', bids_dict)
-            # only do something if BIDS exists on file
-            if isinstance(bids_dict, dict):
-                bids_dict['ignore'] = "True"
-                update_dict['BIDS'] = bids_dict
-                acq.update_file_info(file['name'], update_dict)
-            else:
-                print('there is no BIDS info for session %s of subject %s '
-                      'in project %s' % (fw.get(acq['parents'].session).label,
-                                         fw.get(acq['parents'].subject).label,
-                                         project_label)
-                      )
+    acq = acq.reload()
+
+    [dicom_files.append(f) if f.type == 'dicom' else print(f.type) for f in acq.files] # get only files of type 'dicom'
+
+
+for file in dicom_files:
+
+    if file.info['BIDS'] != 'NA': # if the file contains BIDS metadata
+
+        print('modifying the metadata for file %s %s of subject %s '
+                      'in project %s' % (file.info['SeriesDescription'],
+                                        fw.get(acq.parents.session).label,
+                                        fw.get(acq.parents.subject).label,
+                                        project_label))
+
+        info = file.info
+        info['BIDS']['ignore'] = True
+        file.replace_info(info)
+
+    elif file.info['BIDS'] == 'NA':
+
+        print('No BIDS metadata found for %s' % file.info['SeriesDescription'])

@@ -1,6 +1,6 @@
 """
 
-This script BIDS-ignores tabular data (events, physio).
+This script BIDS-ignores physio DICOMs.
 
 """
 

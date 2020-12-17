@@ -1,7 +1,7 @@
 """
 
-This script changes the phase encoding direction and modality label
-for all the field map acquisitions of a certain project in Flywheel.
+This script changes the phase encoding direction, echo times, and modality label
+for the relevant field map acquisitions of a certain project in Flywheel.
 
 """
 
@@ -33,61 +33,57 @@ query = (
 query = query.format(project.id)
 
 # Find acquisitions matching query
-acq_list = fw.acquisitions.find(query)
+acquisitions = fw.acquisitions.find(query)
 
 
-new_phase_encoding_direction = 'j'
 
 # Acq should be epi
 # modality should be either magnitude1 or phasediff
 # phase encoding direction should be (j) NOT (j-)
 
-# Iterate over returned acquisitions
-for acq in acq_list:
-    # Iterate over all files in that acquisition
-    for file in acq.files:
+new_phase_encoding_direction = 'j'
 
-        if file['type'] == 'nifti':
+phase_diff_echo_time_1 = 0.00487
+phase_diff_echo_time_2 = 0.00733
 
-            if file['classification']['Intent'][0] == 'Fieldmap':
-                print('modifying the metadata for ' + file.info['BIDS']['Filename'])
-                print('session %s of subject %s '
-                              'in project %s' % (fw.get(acq['parents'].session).label,
-                                                 fw.get(acq['parents'].subject).label,
-                                                 project_label))
+nifti_files = list()
 
-                # Initialise update dict
-                update_dict = dict()
-                #get subject and session label
-                subject_label = fw.get(acq['parents'].subject).label
-                session_label = fw.get(acq['parents'].session).label
-                # For custom info that is hierarchical, we must copy
-                bids_dict = file['info'].get('BIDS')
-                print('BIDS dict ', bids_dict)
-                # Only do something if BIDS exists on file
-                if isinstance(bids_dict, dict):
-                    bids_dict['Acq'] = "epi"
+for acq in acquisitions:
 
-                    if 'phasediff' in bids_dict['Filename']:
-                        print('phasediff fieldmap found')
+    acq = acq.reload()
 
-                        bids_dict['Modality'] = 'phasediff'
+    [nifti_files.append(f) if f.type == 'nifti' else print(f.type) for f in acq.files] # get only files of type 'tabular data'
 
-                    elif 'magnitude' in bids_dict['Filename']:
-                        print('magnitude fieldmap found')
 
-                        bids_dict['Modality'] = 'magnitude1'
+for file in nifti_files:
 
-                    update_dict['BIDS'] = bids_dict
-                    # For flat key-value pairs, no need to copy - just set
-                    update_dict['PhaseEncodingDirection'] = new_phase_encoding_direction
-                    acq.update_file_info(file['name'], update_dict)
+    if file['classification']['Intent'][0] == 'Fieldmap':
+            print('modifying the metadata for file %s %s of subject %s '
+                          'in project %s' % (file.name,
+                                            fw.get(acq.parents.session).label,
+                                            fw.get(acq.parents.subject).label,
+                                            project_label))
 
-                    print("fieldmap info update finished")
-                    print("updated info", file.info)
-                else:
-                    print('there is no BIDS info for session %s of subject %s '
-                          'in project %s' % (fw.get(acq['parents'].session).label,
-                                             fw.get(acq['parents'].subject).label,
-                                             project_label)
-                          )
+            info = file.info
+            info['BIDS']['Acq'] = "epi"
+            info['PhaseEncodingDirection'] = new_phase_encoding_direction
+
+            if 'phasediff' in info['BIDS']['Filename']:
+                print('phasediff fieldmap found')
+
+                info['BIDS']['Modality'] = 'phasediff'
+
+                info["EchoTime1"] = phase_diff_echo_time_1
+                info["EchoTime2"] = phase_diff_echo_time_2
+
+                info.pop('EchoTime', None) # get rid of old EchoTime (replaced by above)
+
+            elif 'magnitude' in info['BIDS']['Filename']:
+                print('magnitude fieldmap found')
+
+                info['BIDS']['Modality'] = 'magnitude1'
+
+
+            file.replace_info(info)
+
+            print("fieldmap info update finished")

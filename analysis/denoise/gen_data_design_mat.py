@@ -99,8 +99,16 @@ def save_as_cell_array(data):
 Load data
 """
 
-source_data_path = ('/Users/67981492/Desktop/sub-{}/fmriprep/sub-{}/').format(subject,subject) # starting with one sub
-session_data_path = ('/Users/67981492/Desktop/sub-{}/fmriprep/sub-{}/ses-0{}/mat/').format(subject,subject,session) # starting with one session
+
+source_data_path = ('/data/loki_1/data/BOLD/sub-{}/fmriprep/sub-{}').format(subject,subject) # starting with one sub
+session_data_path = (os.path.join(source_data_path, 'ses-0{}/mat/')).format(session) # starting with one session
+
+if not os.path.exists(session_data_path):
+    os.makedirs(session_data_path)
+
+
+# source_data_path = ('/Users/67981492/Desktop/sub-{}/fmriprep/sub-{}/').format(subject,subject) # starting with one sub
+# session_data_path = ('/Users/67981492/Desktop/sub-{}/fmriprep/sub-{}/ses-0{}/mat/').format(subject,subject,session) # starting with one session
 
 runs_source = glob.glob(os.path.join(source_data_path, ('ses-0{}').format(session), 'func', '*preproc*nii.gz'))
 runs_source.sort()

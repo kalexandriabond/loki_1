@@ -5,6 +5,8 @@ data/BIDS/*/*/func-old/
 data/BOLD/
 analysis/extract_roi/output_preproc/
 analysis/mri_qc/*/htmls/
+utils/api_config.py
+analysis/fmriprep_preproc/t1_shift/t1/
 
 #*.EDF #ignore pupil data, too large 
 *.DS_Store

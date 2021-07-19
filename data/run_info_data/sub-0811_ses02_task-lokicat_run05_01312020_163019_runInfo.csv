@@ -1,2 +1,0 @@
-psychopy_version, python_version, pythonScipyVersion,pyglet_version, pygame_version, numpy_version, wx_version, window_refresh_time_avg_ms,begin_time, exp_dir, last_sys_reboot, system_platform, internet_access, total_exp_time
-3.0.4,2.7.15,1.2.1,1.3.2,1.9.4,1.16.2,4.0.4 osx-cocoa (phoenix) wxWidgets 3.0.5,8.46600128432,2020_01_31 16:30 (Year_Month_Day Hour:Min),/Users/coax_lab/Desktop/loki_1/experimental_scripts,Jan 31 14:42,darwin 10.14.3 x86_64,True,489.077239037

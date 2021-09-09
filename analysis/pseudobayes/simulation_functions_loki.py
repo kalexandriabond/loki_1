@@ -1,3 +1,6 @@
+# written by KAMB 
+
+
 import numpy as np, pandas as pd, matplotlib.pyplot as plt, os
 from bayesian_belief_model_p_ext import update_bayesian_belief
 

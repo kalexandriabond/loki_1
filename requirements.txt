@@ -7,7 +7,7 @@ appdirs==1.4.3
 appnope==0.1.0
 appscript==1.0.1
 arabic-reshaper==2.0.14
-arrow==0.12.1
+arrow==0.15.1
 asn1crypto==0.24.0
 astroid==1.6.1
 astropy==2.0.3
